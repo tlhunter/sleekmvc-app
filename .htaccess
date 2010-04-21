@@ -1,0 +1,11 @@
+#Renowned-CMS Rewrites
+RewriteEngine On
+
+#Uncomment for mediatemple
+#AddHandler php5-script .php
+
+RewriteRule ^([a-zA-Z0-9_-]+)(/?)$ index.php?controller=$1 [QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?controller=$1&method=$2 [QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?controller=$1&method=$2&arg[]=$3 [QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?controller=$1&method=$2&arg[]=$3&arg[]=$4 [QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?controller=$1&method=$2&arg[]=$3&arg[]=$4&arg[]=$5 [QSA]
