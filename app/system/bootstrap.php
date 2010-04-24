@@ -22,7 +22,7 @@ if (file_exists($controller_file)) {
 	require_once($controller_file);
 } else {
 	require_once("app/controller/404.php");
-	die();
+	#die();
 }
 
 # instantiate class
