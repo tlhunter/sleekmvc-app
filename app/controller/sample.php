@@ -1,12 +1,11 @@
 <?php
-
 class sample_ctrl extends BaseCtrl {
 	function __construct() {
 		parent::__construct();
 	}
 	
 	function index() {
-		/*
+		echo "hi";
 		$query = "SELECT * FROM table";
 		$result = $this->db->query($query);
 		$numrows = $this->db->num_rows($result);
@@ -16,11 +15,15 @@ class sample_ctrl extends BaseCtrl {
 		}
 
 		echo $numrows . 'Returned from ' . $query;
-		*/
-		echo "hi";
+		
+		
 	}
 	
 	function register() {
 		echo "register!";
+	}
+	
+	function error_404() {
+		echo "This don't exist!";
 	}
 }
