@@ -8,7 +8,7 @@ class SleekMVC {
 		$this->controller = $controller;
 		$this->method = $method;
 		if (DB_REQUIRED) {
-			include_once("app/system/database.php");
+			include_once("system/database.php");
 			$this->db = New db(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 			$this->db->db_pconnect();
 			$this->db->select_db(DB_DATABASE);

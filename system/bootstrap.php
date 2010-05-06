@@ -1,10 +1,10 @@
 <?php
 include_once("app/config.php");
 
-include_once("app/system/base.php");
-include_once("app/system/base_model.php");
-include_once("app/system/base_controller.php");
-include_once("app/system/base_layout.php");
+include_once("system/base.php");
+include_once("system/base_model.php");
+include_once("system/base_controller.php");
+include_once("system/base_layout.php");
 
 
 $controller = isset($_GET['controller']) ? $_GET['controller'] : SYS_HOME_CONTROLLER;
