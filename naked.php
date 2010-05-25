@@ -1,7 +1,6 @@
 <?php
-#$time_start = microtime_float();
-include_once("system/bootstrap.php");
-/*
+$time_start = microtime_float();
+echo "hi";
 
 function convert($size) {
 	$unit=array('b','kb','mb','gb','tb','pb');
@@ -9,6 +8,7 @@ function convert($size) {
 }
 
 echo "<div>" . convert(memory_get_usage(false)) . "</div>\n";
+
 function microtime_float()
 {
     list($usec, $sec) = explode(" ", microtime());
@@ -18,4 +18,3 @@ $time_end = microtime_float();
 $time = $time_end - $time_start;
 
 echo "<div>$time seconds</div>\n";
-*/
