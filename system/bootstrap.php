@@ -11,5 +11,3 @@ $controllerClassName = "Controller_$controller";
 $controller = new $controllerClassName;
 call_user_func_array(array($controller, $action), $controller_action_arguments);
 
-if (DB_REQUIRED)
-	$sleek->initDatabase(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);

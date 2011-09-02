@@ -1,5 +1,5 @@
 <?php
-class sample_ctrl extends BaseCtrl {
+class Controller_Sample extends Controller_Base {
 	function __construct() {
 		parent::__construct();
 	}
