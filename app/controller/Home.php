@@ -1,21 +1,16 @@
 <?php
 class Controller_Home extends Controller_Base {
-	function __construct() {
-		parent::__construct();
+	
+	function action_index() {
+		$data['title'] = 'Hello World!';
+        View::render('hello', $data);
 	}
 	
-	function index() {
-		$data['message'] = 'Test Message';
-		$this->load->view('basic', $data);
-		
-		
-	}
-	
-	function register() {
+	function action_register($username, $email, $age) {
 		echo "register!";
+        var_dump($username);
+        var_dump($email);
+        var_dump($age);
 	}
 	
-	function error_404() {
-		echo "This don't exist!";
-	}
 }

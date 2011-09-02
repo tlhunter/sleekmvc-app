@@ -5,8 +5,8 @@ define('DB_USERNAME', 'cobalt');
 define('DB_PASSWORD', 'populous');
 define('DB_DATABASE', 'sandbox');
 
-define('SYS_HOME_CONTROLLER', 'home');
-define('SYS_ERROR_CONTROLLER', '404');
+define('SYS_HOME_CONTROLLER', 'Home');
+define('SYS_ERROR_CONTROLLER', 'Error');
 define('SYS_DEFAULT_METHOD', 'index');
 define('SYS_ERROR_METHOD', 'error_404');
 
