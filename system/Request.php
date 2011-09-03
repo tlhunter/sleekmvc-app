@@ -12,28 +12,28 @@ class Request {
         $this->server = $server;
     }
 
-    function GET($key) {
+    function get($key) {
         if (isset($this->get[$key])) {
             return $this->get[$key];
         }
         return NULL;
     }
 
-    function POST($key) {
+    function post($key) {
         if (isset($this->post[$key])) {
             return $this->post[$key];
         }
         return NULL;
     }
 
-    function COOKIE($key) {
+    function cookie($key) {
         if (isset($this->cookie[$key])) {
             return $this->cookie[$key];
         }
         return NULL;
     }
 
-    function SERVER($key) {
+    function server($key) {
         if (isset($this->server[$key])) {
             return $this->server[$key];
         }

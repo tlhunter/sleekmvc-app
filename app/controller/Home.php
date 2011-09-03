@@ -11,7 +11,7 @@ class Controller_Home extends Controller_Base {
     // This page would load when we browse to /home/index or /home or /
 	function action_index() {
 		$data['title'] = 'Hello World!';
-        $data['something'] = $this->request->GET('something');
+        $data['something'] = $this->request->get('something');
 
         if (!$this->session->random) {
             $this->session->random = rand(1, 1000);
