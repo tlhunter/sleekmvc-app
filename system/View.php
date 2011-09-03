@@ -1,10 +1,13 @@
 <?php
 class View {
-    static public function render($filename, $data) {
+    static public function render($filename, $data, $string = FALSE) {
         $view_path = APP_DIR . "view/$filename.php";
         if (file_exists($view_path)) {
             extract($data);
-            return include($view_path);
+            if ($string) { ob_start(); }
+            include($view_path);
+            if ($string) { return ob_get_clean(); }
+            return TRUE;
         }
         return FALSE;
     }
