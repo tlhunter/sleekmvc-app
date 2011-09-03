@@ -13,7 +13,7 @@ class Core {
         try {
             $this->controller = new $this->controllerName;
         } catch (ExceptionClassNotFound $e) {
-            self::throw404($controllerName, $this->actionName, $this->arguments);
+            self::throw404();
         }
 
         if (method_exists($this->controller, $this->actionName)) {
@@ -21,24 +21,19 @@ class Core {
             self::loadController($this->controller, $this->actionName, $this->arguments);
             $this->controller->postAction();
         } else {
-            self::throw404($controllerName, $this->actionName, $this->arguments);
+            self::throw404();
         }
     }
 
-    public static function throw404($controller, $action, $arguments) {
+    public static function throw404() {
         self::loadController(
             Config::get('error_controller'),
-            'action_404',
-            array(
-                $controller,
-                $action,
-                $arguments
-            )
+            'action_404'
         );
         exit();
     }
 
-    public static function loadController($controller, $action, $arguments) {
+    public static function loadController($controller, $action, $arguments = array()) {
         if (is_string($controller)) {
             $controller = 'Controller_' . $controller;
         }

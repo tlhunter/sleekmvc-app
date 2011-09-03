@@ -1,7 +1,7 @@
 <?php
 class Controller_Error extends Controller_Base {
 
-    static function action_404($c, $a, $ar) {
+    static function action_404() {
         header("HTTP/1.1 404 Not Found");
         View::render('error/404');
     }
