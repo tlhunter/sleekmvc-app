@@ -15,4 +15,9 @@ class Response {
     public static function status($code) {
 
     }
+
+    public static function cookie($key, $value) {
+        // Response cookie sets cookies
+        // Request cookie will get cookies
+    }
 }
