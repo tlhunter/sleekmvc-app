@@ -25,7 +25,7 @@ Goals for SleekMVC:
 * So easy to use, first year PHP developers can become proficient
 * Stable enough to be used for production websites
 * Secure variables and prevent XSS and injection attacks
-* Core framework should remain small and lightweight, no 'magic'
+* Core framework should remain small and lightweight, no 'magic' (Cake is fat)
 * Don't clobber $_GET (or any super global) variables (CodeIgniter, I'm looking at you)
 * Don't require a ton of 'empty' class files (Kohana, that's you)
 * Provide a easily understood autoloader (no surprises or confusion for naming)
@@ -33,3 +33,5 @@ Goals for SleekMVC:
 * Use raw PHP files for views (but allow template engine usage if desired)
 * View files won't need to execute classes to access data
 * Work "Out of the Box" with standard IDE "intellisense" features
+* Provide extensive, clear documentation (As good as CodeIgniter, waay better than Kohana)
+* Maintain backwards compatability (Another ding for Kohana)
