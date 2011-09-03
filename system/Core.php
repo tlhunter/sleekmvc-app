@@ -1,5 +1,5 @@
 <?php
-class Bootstrap {
+class Core {
     protected $controller = NULL;
     protected $action = NULL;
     protected $arguments = NULL;
