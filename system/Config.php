@@ -12,7 +12,7 @@ class Config {
      * @return bool Whether or not the configuration file was parsed successfully
      */
     public static function load($config) {
-        $config = parse_ini_file(APP_DIR . "/{$config}.ini", TRUE);
+        $config = parse_ini_file(APP_DIR . "{$config}.ini", TRUE);
         if (!$config) {
             return FALSE;
         }

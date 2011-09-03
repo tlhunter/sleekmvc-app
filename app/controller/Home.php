@@ -7,7 +7,7 @@ class Controller_Home extends Controller_Base {
         View::render('hello', $data);
 	}
 	
-	function action_register($username, $email, $age) {
+	function action_register($username = '', $email = '', $age = 0) {
 		echo "register!";
         var_dump($username);
         var_dump($email);

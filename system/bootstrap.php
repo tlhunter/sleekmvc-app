@@ -1,5 +1,5 @@
 <?php
-require_once(SYSTEM_DIR . "/autoload.php");
+require_once(SYSTEM_DIR . "Autoload.php");
 
 Config::load('config');
 
