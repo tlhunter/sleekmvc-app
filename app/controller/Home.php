@@ -34,7 +34,6 @@ class Controller_Home extends Controller_Base {
 
     function postAction() {
         // This is run similar to a deconstructor, again it is not required to have it.
-        echo "I'm run after the action.";
         parent::postAction();
     }
 	
