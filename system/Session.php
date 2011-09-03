@@ -3,6 +3,7 @@ class Session {
     protected $_data = array();
 
     function __construct(&$session) {
+        session_start();
         $this->_data = $session;
     }
 
