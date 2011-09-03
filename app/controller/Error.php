@@ -1,7 +1,8 @@
 <?php
 class Controller_Error extends Controller_Base {
 
-    function action_404($c, $a, $ar) {
+    static function action_404($c, $a, $ar) {
+        header("HTTP/1.1 404 Not Found");
         echo "404: Tried to load controller {$c}, action {$a}.<br />";
     }
 
