@@ -4,12 +4,19 @@ class Request {
     protected $post     = array();
     protected $cookie   = array();
     protected $server   = array();
+    protected $url      = array();
 
     function __construct($get, $post, $cookie, $server) {
         $this->get = $get;
         $this->post = $post;
         $this->cookie = $cookie;
         $this->server = $server;
+
+        $this->url['controller']   = 'Controller_' . (isset($_GET['controller']) ? $_GET['controller'] : Config::get('default_controller'));
+        $this->url['action']       = 'action_' . (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
+        $this->url['arguments']    = isset($_GET['arg']) ? $_GET['arg'] : array();
+
+        unset($_GET['controller'], $_GET['action'], $_GET['arg']);
     }
 
     function get($key) {
@@ -38,5 +45,24 @@ class Request {
             return $this->server[$key];
         }
         return NULL;
+    }
+
+    function urlController() {
+        return $this->url['controller'];
+    }
+
+    function urlAction() {
+        return $this->url['action'];
+    }
+
+    function urlArguments($index = NULL) {
+        if ($index != NULL) {
+            if (isset($this->url['arguments'][$index])) {
+                return $this->url['arguments'][$index];
+            } else {
+                return NULL;
+            }
+        }
+        return $this->url['arguments'];
     }
 }
