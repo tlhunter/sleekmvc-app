@@ -21,8 +21,10 @@ class Autoload {
                 }
             }
         }
-        return FALSE;
+        throw new ExceptionClassNotFound;
     }
 }
 
 spl_autoload_register('Autoload::loader');
+
+class ExceptionClassNotFound extends Exception {};

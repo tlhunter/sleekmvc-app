@@ -1,6 +1,11 @@
 <?php
 class Controller_Home extends Controller_Base {
 	
+    function preAction() {
+        echo "I'm run before the action.<br />\n";
+        parent::preAction();
+    }
+
 	function action_index() {
 		$data['title'] = 'Hello World!';
         $data['something'] = $this->request->GET('something');
@@ -17,5 +22,10 @@ class Controller_Home extends Controller_Base {
         var_dump($email);
         var_dump($age);
 	}
+
+    function postAction() {
+        echo "I'm run after the action.";
+        parent::postAction();
+    }
 	
 }

@@ -32,6 +32,7 @@ class Error {
     }
 }
 
+
 set_error_handler(
     array(
         'Error',
