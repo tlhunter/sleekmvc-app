@@ -10,6 +10,15 @@ php_flag short_open_tags on
 </IfModule>
 </IfModule>
 
+# Prevent browser from downloading hidden (.something) files
+<Files .*>
+	Order Deny,Allow
+	Deny From All
+</Files>
+
+# Prevent directory listings
+Options -Indexes
+
 RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?controller=$1 [QSA]
 RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ index.php?controller=$1&action=$2 [QSA]
 RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ index.php?controller=$1&action=$2&arg[]=$3 [QSA]
