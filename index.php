@@ -2,5 +2,4 @@
 define('SYSTEM_DIR', 'system/');
 define('APP_DIR', 'app/');
 
-include_once(SYSTEM_DIR . "/Bootstrap.php");
-
+include_once(SYSTEM_DIR . '/Bootstrap.php');

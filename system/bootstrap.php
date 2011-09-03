@@ -1,5 +1,7 @@
 <?php
 require_once(SYSTEM_DIR . "Autoload.php");
+require_once(SYSTEM_DIR . "Error.php");
+require_once(APP_DIR . "controller/Error.php");
 
 Config::load('config');
 

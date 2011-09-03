@@ -5,7 +5,8 @@ class Controller_Error extends Controller_Base {
         echo "404: Tried to load controller {$c}, action {$a}.<br />";
     }
 
-    function action_500($c, $a, $ar) {
-        echo "500";
+    static function action_500($errno = FALSE, $errstr = '', $errfile = '', $errline = 0, $errcontext = '') {
+        echo "oops! $errno : $errstr\n";
+        return TRUE;
     }
 }
