@@ -13,6 +13,11 @@ class Controller_Home extends Controller_Base {
 		$data['title'] = 'Hello World!';
         $data['something'] = $this->request->GET('something');
 
+        if (!$this->session->random) {
+            $this->session->random = rand(1, 1000);
+        }
+        $data['random'] = $this->session->random;
+
         $data2['title'] = 'Hallo Welt!';
         $data2['content'] = View::render('hello', $data, TRUE);
 

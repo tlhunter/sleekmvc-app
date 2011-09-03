@@ -1,20 +1,17 @@
 <?php
 class Session {
-    protected $_data = array();
-
-    function __construct(&$session) {
+    function __construct() {
         session_start();
-        $this->_data = $session;
     }
 
     function __get($key) {
-        if (isset($this->_data[$key])) {
-            return $this->_data[$key];
+        if (isset($_SESSION[$key])) {
+            return $_SESSION[$key];
         }
         return NULL;
     }
 
     function __set($key, $value) {
-        $this->_data[$key] = $value;
+        $_SESSION[$key] = $value;
     }
 }

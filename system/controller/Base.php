@@ -8,7 +8,7 @@ abstract class Controller_Base {
         $this->request = new Request($_GET, $_POST, $_COOKIE, $_SERVER);
 
         if (Config::get('use_sessions')) {
-            $this->session = new Session($_SESSION);
+            $this->session = new Session();
         }
 
         $this->response = new Response();
