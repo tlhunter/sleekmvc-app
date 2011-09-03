@@ -11,7 +11,13 @@ $controller_action_arguments = isset($_GET['arg']) ? $_GET['arg'] : array();
 $controllerClassName = "Controller_$controller";
 $controller = new $controllerClassName;
 if (method_exists($controller, $action)) {
-    call_user_func_array(array($controller, $action), $controller_action_arguments);
+    call_user_func_array(
+        array(
+            $controller,
+            $action
+        ),
+        $controller_action_arguments
+    );
 } else {
     call_user_func_array(
         array(
