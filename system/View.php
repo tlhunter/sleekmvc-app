@@ -1,6 +1,6 @@
 <?php
 class View {
-    static public function render($filename, $data, $string = FALSE) {
+    static public function render($filename, $data = array(), $string = FALSE) {
         $view_path = APP_DIR . "view/$filename.php";
         if (file_exists($view_path)) {
             extract($data);
