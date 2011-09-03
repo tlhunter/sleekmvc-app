@@ -1,53 +1,54 @@
 <?php
-require_once(SYSTEM_DIR . "Autoload.php");
-//require_once(SYSTEM_DIR . "Error.php");
-//require_once(APP_DIR . "controller/Error.php");
+class Bootstrap {
+    protected $controller = NULL;
+    protected $action = NULL;
+    protected $arguments = NULL;
+    protected $cClassName = NULL;
 
-Config::load('config');
+    function __construct() {
+        $this->controller     = isset($_GET['controller']) ? $_GET['controller'] : Config::get('default_controller');
+        $this->action         = 'action_' . (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
+        $this->arguments      = isset($_GET['arg']) ? $_GET['arg'] : array();
+        $this->cClassName     = "Controller_{$this->controller}";
 
-$controller = isset($_GET['controller']) ? $_GET['controller'] : Config::get('default_controller');
-$action = 'action_' . (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
+        try {
+            $this->controller = new $this->cClassName;
+        } catch (ExceptionClassNotFound $e) {
+            self::throw404($this->controller, $this->action, $this->arguments);
+        }
 
-$controller_action_arguments = isset($_GET['arg']) ? $_GET['arg'] : array();
+        if (method_exists($this->controller, $this->action)) {
+            $this->controller->preAction();
+            self::loadController($this->controller, $this->action, $this->arguments);
+            $this->controller->postAction();
+        } else {
+            self::throw404($this->controller, $this->action, $this->arguments);
+        }
+    }
 
-$controllerClassName = "Controller_$controller";
-try {
-    $controller = new $controllerClassName;
-} catch (ExceptionClassNotFound $e) {
-    call_user_func_array(
-        array(
-            'Controller_' . Config::get('error_controller'),
-            'action_404'
-        ),
-        array(
-            $controllerClassName,
-            $action,
-            $controller_action_arguments
-        )
-    );
-    exit();
+    public static function throw404($controller, $action, $arguments) {
+        self::loadController(
+            Config::get('error_controller'),
+            'action_404',
+            array(
+                $controller,
+                $action,
+                $arguments
+            )
+        );
+        exit();
+    }
+
+    public static function loadController($controller, $action, $arguments) {
+        if (is_string($controller)) {
+            $controller = 'Controller_' . $controller;
+        }
+        call_user_func_array(
+            array(
+                $controller,
+                $action
+            ),
+            $arguments
+        );
+    }
 }
-if (method_exists($controller, $action)) {
-    $controller->preAction();
-    call_user_func_array(
-        array(
-            $controller,
-            $action
-        ),
-        $controller_action_arguments
-    );
-    $controller->postAction();
-} else {
-    call_user_func_array(
-        array(
-            'Controller_' . Config::get('error_controller'),
-            'action_404'
-        ),
-        array(
-            $controllerClassName,
-            $action,
-            $controller_action_arguments
-        )
-    );
-}
-
