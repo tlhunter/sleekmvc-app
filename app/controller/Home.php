@@ -2,10 +2,13 @@
 class Controller_Home extends Controller_Base {
 	
     function preAction() {
-        echo "I'm run before the action.<br />\n";
-        parent::preAction();
+        // This function is run before your action is run. Think of it like a constructor.
+        // You don't need to have it if you don't plan on using it.
+        // Put any code in here you want to be run for every action in this controller.
+        parent::preAction(); // keep this here so that the parent's preAction() is run.
     }
 
+    // This page would load when we browse to /home/index or /home or /
 	function action_index() {
 		$data['title'] = 'Hello World!';
         $data['something'] = $this->request->GET('something');
@@ -16,6 +19,7 @@ class Controller_Home extends Controller_Base {
         View::render('layout/main', $data2);
 	}
 	
+    // This page would load when we browse to /home/register
 	function action_register($username = '', $email = '', $age = 0) {
 		echo "register!";
         var_dump($username);
@@ -24,6 +28,7 @@ class Controller_Home extends Controller_Base {
 	}
 
     function postAction() {
+        // This is run similar to a deconstructor, again it is not required to have it.
         echo "I'm run after the action.";
         parent::postAction();
     }
