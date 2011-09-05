@@ -32,6 +32,12 @@ class Controller_Home extends Controller_Base {
         var_dump($age);
 	}
 
+    function action_people() {
+        $people = new Model_People;
+        $people->getPeople();
+    }
+
+
     function postAction() {
         // This is run similar to a deconstructor, again it is not required to have it.
         parent::postAction();
