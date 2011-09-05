@@ -6,7 +6,7 @@ class Core {
     protected $arguments        = NULL;
 
     function __construct() {
-        $this->controllerName   = 'Controller_' . (isset($_GET['controller']) ? $_GET['controller'] : Config::get('default_controller'));
+        $this->controllerName   = 'Controller_' . (isset($_GET['controller']) ? ucfirst($_GET['controller']) : Config::get('default_controller'));
         $this->actionName       = 'action_' . (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
         $this->arguments        = isset($_GET['arg']) ? $_GET['arg'] : array();
 

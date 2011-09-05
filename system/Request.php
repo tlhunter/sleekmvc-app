@@ -7,16 +7,16 @@ class Request {
     protected $url      = array();
 
     function __construct($get, $post, $cookie, $server) {
+        $this->url['controller']   = 'Controller_' . (isset($_GET['controller']) ? ucfirst($_GET['controller']) : Config::get('default_controller'));
+        $this->url['action']       = 'action_' . (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
+        $this->url['arguments']    = isset($_GET['arg']) ? $_GET['arg'] : array();
+
+        unset($_GET['controller'], $_GET['action'], $_GET['arg']); // This data shouldn't be available to GET
+
         $this->get = $get;
         $this->post = $post;
         $this->cookie = $cookie;
         $this->server = $server;
-
-        $this->url['controller']   = 'Controller_' . (isset($_GET['controller']) ? $_GET['controller'] : Config::get('default_controller'));
-        $this->url['action']       = 'action_' . (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
-        $this->url['arguments']    = isset($_GET['arg']) ? $_GET['arg'] : array();
-
-        unset($_GET['controller'], $_GET['action'], $_GET['arg']);
     }
 
     function get($key) {
