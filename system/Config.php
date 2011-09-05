@@ -11,8 +11,8 @@ class Config {
      * @param string $config The file we want to load configuration from
      * @return bool Whether or not the configuration file was parsed successfully
      */
-    public static function load($config) {
-        $config = parse_ini_file(APP_DIR . "{$config}.ini", TRUE);
+    public static function load() {
+        $config = parse_ini_file(APP_DIR . "config.ini", TRUE);
         if (!$config) {
             return FALSE;
         }
@@ -34,9 +34,14 @@ class Config {
      * @return mixed The value of the configuration key
      */
     public static function get($key) {
+        if (!isset(self::$configuration)) {
+            self::load();
+        }
+
         if (isset(self::$configuration[$key])) {
             return self::$configuration[$key];
         }
+
         return NULL;
     }
 }
