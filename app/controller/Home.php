@@ -34,7 +34,9 @@ class Controller_Home extends Controller_Base {
 
     function action_people() {
         $people = new Model_People;
-        $people->getPeople();
+        $peopleList = $people->getPeople();
+        $data['people'] = $peopleList;
+        View::render('people', $data);
     }
 
 
