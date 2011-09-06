@@ -26,7 +26,7 @@ class Database {
     public function query($query) {
         $result = mysql_query($query, $this->connection);
         if ($result) {
-            return $result;
+            return new DatabaseResult($result);
         }
         return FALSE;
     }
