@@ -26,7 +26,7 @@ class Database {
     public function query($query) {
         $result = mysql_query($query, $this->connection);
         if ($result) {
-            return mysql_fetch_assoc($result);
+            return $result;
         }
         return FALSE;
     }
