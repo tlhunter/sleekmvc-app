@@ -39,4 +39,8 @@ class Database {
         return mysql_error($this->connection);
     }
 
+    public function affectedRows() {
+        return mysql_affected_rows($this->connection);
+    }
+
 }
