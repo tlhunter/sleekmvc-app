@@ -27,7 +27,7 @@ abstract class Controller_Base {
      * Instantiates the Request and Response variables (and Session if enabled in config file)
      */
     public function __construct() {
-        $this->request = new Request($_GET, $_POST, $_COOKIE, $_SERVER);
+        $this->request = Request::getInstance();
 
         if (Config::get('use_sessions')) {
             $this->session = new Session();

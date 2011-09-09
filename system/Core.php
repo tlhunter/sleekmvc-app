@@ -6,9 +6,10 @@ class Core {
     protected $arguments        = NULL;
 
     function __construct() {
-        $this->controllerName   = 'Controller_' . (isset($_GET['controller']) ? ucfirst($_GET['controller']) : Config::get('default_controller'));
-        $this->actionName       = 'action_' . (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
-        $this->arguments        = isset($_GET['arg']) ? $_GET['arg'] : array();
+        $request = Request::getInstance();
+        $this->controllerName   = $request->urlController();
+        $this->actionName       = $request->urlAction();
+        $this->arguments        = $request->urlArguments();
 
         try {
             $this->controller = new $this->controllerName;
