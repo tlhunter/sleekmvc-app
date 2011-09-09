@@ -1,7 +1,6 @@
 <?php
 class Controller_Databasetest extends Controller_Base {
     function preAction() {
-        parent::preAction();
         $this->people = new Model_People; // This would be useful if multiple controller action's used it
     }
 

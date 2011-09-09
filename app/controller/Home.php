@@ -5,7 +5,6 @@ class Controller_Home extends Controller_Base {
         // This function is run before your action is run. Think of it like a constructor.
         // You don't need to have it if you don't plan on using it.
         // Put any code in here you want to be run for every action in this controller.
-        parent::preAction(); // keep this here so that the parent's preAction() is run.
     }
 
     // This page would load when we browse to /home/index or /home or /
@@ -35,6 +34,7 @@ class Controller_Home extends Controller_Base {
         }
 	}
 
+    // This pag would load when we browse to /home/people
     function action_people() {
         $people = new Model_People;
         $peopleList = $people->getPeople();
@@ -45,7 +45,6 @@ class Controller_Home extends Controller_Base {
 
     function postAction() {
         // This is run similar to a deconstructor, again it is not required to have it.
-        parent::postAction();
     }
 	
 }
