@@ -1,6 +1,6 @@
 <?php
 class Cache {
-    static protected $cache         = NULL;
+    protected static $_instance         = NULL;
 
     private function __construct() {}
     private function __clone() {}
@@ -10,7 +10,7 @@ class Cache {
      * @param $type string
      * @return Cache_APC|Cache_File|Cache_Memcache
      */
-    public function factory($type) {
+    public static function factory($type) {
         return self::buildCache($type);
     }
 
@@ -18,14 +18,14 @@ class Cache {
      * Returns the "Default" cache, described in the config file
      * @return Cache_APC|Cache_File|Cache_Memcache
      */
-    public function getCache() {
-        if (!self::$cache) {
-            self::$cache = buildCache(Config::get('cache_method'));
+    public static function getInstance() {
+        if (!self::$_instance) {
+            self::$_instance = self::buildCache(Config::get('cache_method'));
         }
-        return self::$cache;
+        return self::$_instance;
     }
 
-    protected function buildCache($type) {
+    protected static function buildCache($type) {
         switch($type) {
         case 'memcache':
             return new Cache_Memcache(Config::get('cache_memcache_servers'), Config::get('cache_expiretime'));
