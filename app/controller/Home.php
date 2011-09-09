@@ -27,9 +27,12 @@ class Controller_Home extends Controller_Base {
     // This page would load when we browse to /home/register
 	function action_register($username = '', $email = '', $age = 0) {
 		echo "register!";
-        var_dump($username);
-        var_dump($email);
-        var_dump($age);
+        $people = new Model_People;
+        if ($id = $people->newPerson('test')) {
+            echo "New person was created! Their id is $id.";
+        } else {
+            echo "Error creating person. Error is {$people->lastError()}.";
+        }
 	}
 
     function action_people() {

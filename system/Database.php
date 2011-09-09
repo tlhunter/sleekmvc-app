@@ -31,6 +31,10 @@ class Database {
         return FALSE;
     }
 
+    public function querySimple($query) {
+
+    }
+
     public function lastId() {
         return mysql_insert_id($this->connection);
     }
@@ -41,6 +45,33 @@ class Database {
 
     public function affectedRows() {
         return mysql_affected_rows($this->connection);
+    }
+
+    public function insert($table, $data) {
+        $sql = "INSERT INTO $table SET ";
+        $interim = array();
+        foreach($data AS $key => $value) {
+            $interim[] = "`$key` = '" . mysql_real_escape_string($value, $this->connection) . "'";
+        }
+        $data = implode($interim, ',');
+        $sql .= $data;
+        if (mysql_query($sql)) {
+            return mysql_insert_id($this->connection);
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function delete($table, $where) {
+
+    }
+
+    public function update($table, $data, $where) {
+
+    }
+
+    public function select($table, $where) {
+
     }
 
 }
