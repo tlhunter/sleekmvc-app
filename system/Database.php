@@ -56,7 +56,7 @@ class Database {
      * @return int | FALSE
      */
     public function query($query) {
-        $result = executeRawQuery($query);
+        $result = $this->executeRawQuery($query);
         if ($result) {
             return new DatabaseResult($result);
         }
@@ -70,7 +70,7 @@ class Database {
      * @return int | FALSE
      */
     public function querySimple($query) {
-        $result = executeRawQuery($query);
+        $result = $this->executeRawQuery($query);
         if ($result) {
             return mysql_affected_rows($this->connection);
         } else {
@@ -125,7 +125,7 @@ class Database {
         $data = implode($interim, ',');
         $sql .= $data;
 
-        if (executeRawQuery($sql)) {
+        if ($this->executeRawQuery($sql)) {
             return mysql_insert_id($this->connection);
         } else {
             return FALSE;
@@ -147,7 +147,7 @@ class Database {
         $data = implode($interim, ' AND ');
         $sql .= $data;
 
-        if (executeRawQuery($sql)) {
+        if ($this->executeRawQuery($sql)) {
             return mysql_affected_rows($this->connection);
         } else {
             return FALSE;
@@ -181,7 +181,7 @@ class Database {
             $sql .= $data;
         }
 
-        if (executeRawQuery($sql)) {
+        if ($this->executeRawQuery($sql)) {
             return mysql_affected_rows($this->connection);
         } else {
             return FALSE;
@@ -205,12 +205,16 @@ class Database {
             $offset = (int) $offset;
         }
         $sql = "SELECT ";
-        $interim = array();
-        foreach($columns AS $column) {
-            $interim[] = (string) $column;
+        if (is_array($columns)) {
+            $interim = array();
+            foreach($columns AS $column) {
+                $interim[] = (string) $column;
+            }
+            $data = implode($interim, ', ');
+            $sql .= $data;
+        } else if (is_string($columns)) {
+            $sql .= $columns;
         }
-        $data = implode($interim, ', ');
-        $sql .= $data;
 
         $sql .= " FROM $table";
 
@@ -231,7 +235,7 @@ class Database {
             }
         }
 
-        $result = executeRawQuery($sql);
+        $result = $this->executeRawQuery($sql);
         if ($result) {
             return new DatabaseResult($result);
         }
