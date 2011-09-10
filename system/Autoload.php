@@ -16,12 +16,12 @@ class Autoload {
             $filename = $path . '/' . lcfirst(str_replace('_', '/', $className)) . '.php';
             if (file_exists($filename)) {
                 include_once($filename);
-                if (class_exists($className)) {
+                if (class_exists($className) || interface_exists($className)) {
                     return TRUE;
                 }
             }
         }
-        throw new ExceptionClassNotFound;
+        throw new ExceptionClassNotFound($className);
     }
 }
 
