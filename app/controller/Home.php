@@ -5,6 +5,7 @@ class Controller_Home extends Controller_Base {
         // This function is run before your action is run. Think of it like a constructor.
         // You don't need to have it if you don't plan on using it.
         // Put any code in here you want to be run for every action in this controller.
+        $this->cache = Cache::getInstance();
     }
 
     // This page would load when we browse to /home/index or /home or /
@@ -15,7 +16,12 @@ class Controller_Home extends Controller_Base {
         if (!$this->session->random) {
             $this->session->random = rand(1, 1000);
         }
+        if (!$this->cache->cachedValue) {
+            $this->cache->cachedValue = time();
+        }
+
         $data['random'] = $this->session->random;
+        $data['cachedDate'] = $this->cache->cachedValue;
 
         $data2['title'] = 'Hallo Welt!';
         $data2['content'] = View::render('hello', $data, TRUE);
