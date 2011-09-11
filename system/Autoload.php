@@ -28,3 +28,5 @@ class Autoload {
 spl_autoload_register('Autoload::loader');
 
 class ExceptionClassNotFound extends Exception {};
+
+ini_set('unserialize_callback_func', 'Autoload::loader');
