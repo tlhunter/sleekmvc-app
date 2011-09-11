@@ -6,13 +6,13 @@ class Controller_Error extends Controller_Base {
         View::render('error/404');
     }
 
-    public function action_500($errno = FALSE, $errstr = '', $errfile = '', $errline = 0, $errcontext = '') {
+    public function action_500($number = FALSE, $text = '', $filename = '', $linenumber = 0, $context = '') {
         $data = array(
-            'errno' => $errno,
-            'errstr' => $errstr,
-            'errfile' => $errfile,
-            'errline' => $errline,
-            'errcontext' => $errcontext,
+            'number' => $number,
+            'text' => $text,
+            'filename' => $filename,
+            'linenumber' => $linenumber,
+            'context' => $context,
         );
         View::render('error/500', $data);
         return TRUE;
