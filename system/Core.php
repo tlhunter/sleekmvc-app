@@ -27,8 +27,10 @@ class Core {
     }
 
     public static function throw404() {
+        $errorControllerName = 'Controller_' . Config::get('error_controller');
+        $errorController = new $errorControllerName;
         self::loadController(
-            Config::get('error_controller'),
+            $errorController,
             'action_404'
         );
         exit();
