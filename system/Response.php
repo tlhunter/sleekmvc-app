@@ -31,7 +31,6 @@ class Response {
             header("HTTP/1.1 301 Moved Permanently");
         }
         header("Location: $url");
-        exit(); // is this a good idea?
     }
 
     public static function header($name, $value) {
