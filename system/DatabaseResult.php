@@ -18,7 +18,7 @@ class DatabaseResult implements Countable {
      *  while ($row = $result->row()) { echo $row['id']; }
      * @return array
      */
-    public function row() { // Associative Array (personal favorite)
+    public function row() {
         return mysql_fetch_assoc($this->result);
     }
 
@@ -27,7 +27,7 @@ class DatabaseResult implements Countable {
      *  while ($row = $result->enum()) { echo $row[0]; }
      * @return array
      */
-    public function enum() { // Enumerated Array (who would want this?!)
+    public function enum() {
         return mysql_fetch_row($this->result);
     }
 
@@ -36,7 +36,7 @@ class DatabaseResult implements Countable {
      *  while ($row = $result->row()) { echo $row->id; }
      * @return stdClass
      */
-    public function object() { // Object (std class)
+    public function object() {
         return mysql_fetch_object($this->result);
     }
 
