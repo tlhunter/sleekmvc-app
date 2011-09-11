@@ -48,6 +48,11 @@ class Controller_Home extends Controller_Base {
         View::render('people', $data);
     }
 
+    function action_throwerror() {
+        throw new exception();
+
+    }
+
 
     function postAction() {
         // This is run similar to a deconstructor, again it is not required to have it.
