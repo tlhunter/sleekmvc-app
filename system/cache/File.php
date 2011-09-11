@@ -1,10 +1,10 @@
 <?php
 class Cache_File implements Cache_Base {
     protected $directory            = NULL;
-    protected $cacheTime            = 0;
+    protected $expireTime           = 0;
 
     public function __construct($expireTime, $directory) {
-        $this->cacheDirectory       = $directory;
+        $this->directory            = $directory;
         $this->expireTime           = (int) $expireTime;
     }
 
@@ -30,7 +30,10 @@ class Cache_File implements Cache_Base {
 
     public function get($key) {
         $filename = $this->getFileName($key);
-        $data = @file_get_contents($filename);
+        if (!file_exists($filename)) {
+            return NULL;
+        }
+        $data = file_get_contents($filename);
         if (!$data) {
             return NULL;
         }
@@ -43,10 +46,14 @@ class Cache_File implements Cache_Base {
 
     public function delete($key) {
         $filename = $this->getFileName($key);
+        if (!file_exists($filename)) {
+            return FALSE;
+        }
         return @unlink($filename);
     }
 
     private function getFileName($key) {
-        return $this->directory . md5($key) . '.json';
+        $key = (string) $key;
+        return $this->directory . md5($key) . '.cache';
     }
 }
