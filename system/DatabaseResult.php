@@ -1,5 +1,5 @@
 <?php
-class DatabaseResult implements Countable /*implements Iterator */ {
+class DatabaseResult implements Countable {
     protected $result = NULL;
     // This class will be used for iterating over database results
     public function __construct($databaseResult) {
