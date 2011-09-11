@@ -28,13 +28,13 @@ class Cache {
     protected static function buildCache($type) {
         switch($type) {
         case 'memcache':
-            return new Cache_Memcache(Config::get('cache_memcache_servers'), Config::get('cache_expiretime'));
+            return new Cache_Memcache(Config::get('cache_expiretime'), Config::get('cache_memcache_servers'));
             break;
         case 'apc':
             return new Cache_APC(Config::get('cache_expiretime'));
             break;
         case 'file':
-            return  new Cache_File(Config::get('cache_file_directory'), Config::get('cache_expiretime'));
+            return  new Cache_File(Config::get('cache_expiretime'), Config::get('cache_file_directory'));
             break;
         }
         return NULL;

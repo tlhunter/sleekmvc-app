@@ -5,7 +5,7 @@ class Cache_Memcache implements Cache_Base {
     protected $memcache             = NULL;
     protected $expireTime           = 0;
 
-    function __construct($servers, $expireTime) {
+    function __construct($expireTime, $servers) {
         $this->memcache             = new Memcache;
         $this->servers              = $servers;
         $this->expireTime           = (int) $expireTime;
