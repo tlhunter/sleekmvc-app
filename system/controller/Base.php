@@ -28,12 +28,12 @@ abstract class Controller_Base {
      */
     public function __construct() {
         $this->request = Request::getInstance();
+        $this->response = Response::getInstance();
 
+        // Use the 'use_sessions' setting to enable or disable the session class
         if (Config::get('use_sessions')) {
-            $this->session = new Session();
+            $this->session = Session::getInstance();
         }
-
-        $this->response = new Response();
     }
 
     /**

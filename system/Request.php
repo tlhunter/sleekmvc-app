@@ -1,7 +1,7 @@
 <?php
 class Request {
     /**
-     * @var Database The singleton instance of our database class
+     * @var Request The singleton instance of our request class
      */
     static private $_instance   = NULL;
 
