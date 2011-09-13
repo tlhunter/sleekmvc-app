@@ -62,12 +62,26 @@ class Response {
         # List needs to contain more entries
         # http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
         switch($code) {
-        case '200':
-            $text = "OK";
-            break;
-        case '404':
-            $text = "Not Found";
-            break;
+            case '200':
+                $text = "OK";
+                break;
+            case '400':
+                $text = "Bad Request";
+                break;
+            case '401':
+                $text = "Unauthorized";
+                break;
+            case '403':
+                $text = "Forbidden";
+                break;
+            case '404':
+                $text = "Not Found";
+                break;
+            case '500':
+                $text = "Internal Server Error";
+                break;
+            default:
+                return FALSE;
         }
         header($code . ' ' . $text);
         return TRUE;
