@@ -27,21 +27,60 @@ class Response {
     }
 
     public static function redirect($url, $permanent = FALSE) {
+        if (headers_sent()) {
+            return FALSE;
+        }
         if ($permanent) {
             header("HTTP/1.1 301 Moved Permanently");
         }
         header("Location: $url");
+        return TRUE;
     }
 
-    public static function header($name, $value) {
-
+    public static function header($name, $value = NULL) {
+        if (headers_sent()) {
+            return FALSE;
+        }
+        $header = $name;
+        if ($value) {
+            $header .= ": $value";
+        }
+        header($header);
+        return TRUE;
     }
 
+    /**
+     * Sets a status code by taking the number and automatically adding the status text for the developer
+     * @param $code int
+     * @return bool
+     */
     public static function status($code) {
-
+        if (headers_sent()) {
+            return FALSE;
+        }
+        $text = '';
+        # List needs to contain more entries
+        # http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+        switch($code) {
+        case '200':
+            $text = "OK";
+            break;
+        case '404':
+            $text = "Not Found";
+            break;
+        }
+        header($code . ' ' . $text);
+        return TRUE;
     }
 
-    public static function cookie($key, $value) {
+    /**
+     * This function sets a cookie. To read a cookie, use Request::cookie();
+     */
+    public static function cookie($name, $value, $expire = 0, $path = NULL, $domain = NULL, $secure = NULL, $httponly = NULL) {
+        if (headers_sent()) {
+            return FALSE;
+        }
+        return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
         // Response cookie sets cookies
         // Request cookie will get cookies
     }
