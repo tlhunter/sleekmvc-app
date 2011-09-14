@@ -21,12 +21,11 @@ class Autoload {
                 }
             }
         }
-        throw new ExceptionClassNotFound($className);
+        throw new Exception_ClassNotFound($className);
+    }
+
+    static public function register() {
+        spl_autoload_register('Autoload::loader');
+        ini_set('unserialize_callback_func', 'Autoload::loader');
     }
 }
-
-spl_autoload_register('Autoload::loader');
-
-class ExceptionClassNotFound extends Exception {};
-
-ini_set('unserialize_callback_func', 'Autoload::loader');

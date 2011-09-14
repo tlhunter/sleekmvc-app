@@ -13,7 +13,7 @@ class Core {
 
         try {
             $this->controller = new $this->controllerName;
-        } catch (ExceptionClassNotFound $e) {
+        } catch (Exception_ClassNotFound $e) {
             self::throw404();
         }
 
