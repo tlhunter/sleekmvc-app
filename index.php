@@ -6,4 +6,6 @@ require_once(SYSTEM_DIR . "Autoload.php");
 require_once(SYSTEM_DIR . "Error.php");
 
 Autoload::register();
+Error::register();
+
 new Core();

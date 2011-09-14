@@ -16,7 +16,9 @@ class Error {
             $errorClass->action_fatal($error);
         }
     }
-}
 
-set_error_handler(array('Error', 'handler')); // Catches generic errors (or so I'm told)
-//register_shutdown_function(array('Error', 'shutdown')); // Catches Fatal errors
+    public static function register() {
+        set_error_handler(array('Error', 'handler'));
+        //register_shutdown_function(array('Error', 'shutdown')); // Catches Fatal errors
+    }        
+}
