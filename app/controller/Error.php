@@ -2,7 +2,7 @@
 class Controller_Error extends Controller_Base {
 
     public function action_404() {
-        header("HTTP/1.1 404 Not Found");
+        $this->response->status(404);
         View::render('error/404');
     }
 

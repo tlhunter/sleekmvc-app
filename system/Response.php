@@ -83,7 +83,7 @@ class Response {
             default:
                 return FALSE;
         }
-        header($code . ' ' . $text);
+        header('HTTP/1.1 ' . $code . ' ' . $text);
         return TRUE;
     }
 
