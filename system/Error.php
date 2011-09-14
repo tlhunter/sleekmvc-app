@@ -10,7 +10,6 @@ class Error {
     public static function shutdown() {
         $error = error_get_last();
         if ($error['type'] == 1) {
-            //include_once(APP_PATH . 'controller/Error.php');
             $errorClassName = 'Controller_' . Config::get('error_controller');
             $errorClass = new $errorClassName;
             $errorClass->action_fatal($error);

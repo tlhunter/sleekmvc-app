@@ -33,7 +33,7 @@ class DatabaseResult implements Countable {
 
     /**
      * Returns the next available row as an object
-     *  while ($row = $result->row()) { echo $row->id; }
+     *  while ($row = $result->object()) { echo $row->id; }
      * @return stdClass
      */
     public function object() {
