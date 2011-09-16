@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Email {
     const HTML              = 'html';
     const TEXT              = 'text';

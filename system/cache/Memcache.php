@@ -1,5 +1,7 @@
 <?php
-class Cache_Memcache implements Cache_Base {
+namespace SleekMVC\Cache;
+
+class Memcache implements Base {
     protected $servers              = array();
     protected $connectedServers     = array();
     protected $memcache             = NULL;

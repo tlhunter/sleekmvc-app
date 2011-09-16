@@ -1,11 +1,12 @@
 <?php
-define('SYSTEM_DIR', 'system/');
-define('APP_DIR', 'app/');
+define('SYSTEM_DIR',    'system/');
+define('APP_DIR',       'app/');
+define('VENDOR_DIR',    'app/vendor/');
 
 require_once(SYSTEM_DIR . "Autoload.php");
 require_once(SYSTEM_DIR . "Error.php");
 
-Autoload::register();
-Error::register();
+\SleekMVC\Autoload::register();
+\SleekMVC\Error::register();
 
-new Core();
+new \SleekMVC\Core();

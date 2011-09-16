@@ -1,5 +1,7 @@
 <?php
-interface Cache_Base {
+namespace SleekMVC\Cache;
+
+interface Base {
     /**
      * Sets data $cache->set($key, $value)
      * @param $key string

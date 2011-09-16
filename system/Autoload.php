@@ -1,10 +1,16 @@
 <?php
+namespace SleekMVC;
+
 class Autoload {
     /**
      * The list of directories to check for our classes, application > system
      * @var array
      */
-    static protected $fallback = array('app', 'system');
+    static protected $fallback = array(
+        FALSE       => 'app',
+        ''          => 'app/vendor',
+        'SleekMVC'  => 'system'
+    );
 
     /**
      * Handles PHP autoloading thanks to spl_autoload_register()
@@ -12,8 +18,9 @@ class Autoload {
      * @return bool Whether or not the class was located
      */
     static public function loader($className) {
-        foreach(self::$fallback AS $path) {
-            $filename = $path . '/' . lcfirst(str_replace('_', '/', $className)) . '.php';
+        $classNameParts = explode('\\', $className);
+        foreach(self::$fallback AS $namespace => $path) {
+            $filename = $path . '/' . lcfirst(str_replace('\\', '/', $className)) . '.php';
             if (file_exists($filename)) {
                 include_once($filename);
                 if (class_exists($className) || interface_exists($className)) {
@@ -21,11 +28,11 @@ class Autoload {
                 }
             }
         }
-        throw new Exception_ClassNotFound($className);
+        throw new Exception\ClassNotFound($className);
     }
 
     static public function register() {
-        spl_autoload_register('Autoload::loader');
-        ini_set('unserialize_callback_func', 'Autoload::loader');
+        spl_autoload_register('\SleekMVC\Autoload::loader');
+        ini_set('unserialize_callback_func', '\SleekMVC\Autoload::loader');
     }
 }

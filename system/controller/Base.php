@@ -1,10 +1,11 @@
 <?php
+namespace SleekMVC\Controller;
 /**
  * Controller classes need to extend this base class.
  * This class provides common functionality useful to controllers
  * Using a preAction() and postAction() function in child classes is optional.
  */
-abstract class Controller_Base {
+abstract class Base {
     /**
      * Contains data from the client's request (GET, POST, COOKIE, SERVER)
      * @var Request

@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Config {
     /**
      * The collection of all configuration values for this server

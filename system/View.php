@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class View {
     static public function render($filename, $data = array(), $string = FALSE) {
         $view_path = APP_DIR . "view/$filename.php";

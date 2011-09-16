@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Core {
     protected $controllerName   = NULL;
     protected $controller       = NULL;

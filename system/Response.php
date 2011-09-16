@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Response {
     /**
      * @var Response The singleton instance of our response class

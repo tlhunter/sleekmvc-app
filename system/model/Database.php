@@ -1,8 +1,9 @@
 <?php
+namespace SleekMVC\Model;
 /**
  * All model's dealing with database connectivity should extend from this base class
  */
-abstract class Model_Database extends Model_Base {
+abstract class Database extends Base {
     /**
      * @var Database
      */

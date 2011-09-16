@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Database {
     /**
      * @var Database The singleton instance of our database class

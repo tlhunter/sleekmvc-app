@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Session {
     static private $_instance   = NULL;
 

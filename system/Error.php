@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Error {
     public static function handler($errno, $errstr, $errfile, $errline, $errcontext) {
         $errorClassName = 'Controller_' . Config::get('error_controller');

@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Request {
     /**
      * @var Request The singleton instance of our request class

@@ -1,4 +1,6 @@
 <?php
+namespace SleekMVC;
+
 class Cache {
     protected static $_instance         = NULL;
 
