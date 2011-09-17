@@ -7,67 +7,30 @@ class Controller_Databasetest extends \Sleek\Controller_Base {
     }
 
     function action_index() {
-        echo "<h1>All People (Manually Selected)</h1>\n";
-        $peopleManual = $this->people->getAllPeopleManual();
-        echo $this->people->lastQueryPassThru(), "<br />\n";
-        echo "<pre>";
-        while ($person = $peopleManual->row()) {
-            var_dump($person);
-        }
-        echo "</pre>";
+        $data['first_people_results'] = $this->people->getAllPeopleManual();
+        $data['query1'] = $this->people->lastQueryPassThru();
 
-        echo "<h1>All People (Simple Selected)</h1>\n";
-        $peopleSimple = $this->people->getAllPeopleSimple();
-        echo $this->people->lastQueryPassThru(), "<br />\n";
-        echo "<pre>";
-        while ($person = $peopleSimple->row()) {
-            var_dump($person);
-        }
-        echo "</pre>";
-
-        echo "<h1>Adding a new person</h1>\n";
         if (!$personId = $this->people->newPerson('Ted', 1)) {
             die("There was an error creating a person:<br />" . $this->people->lastErrorPassThru() . "<br />" . $this->people->lastQueryPassThru());
         }
-        echo $this->people->lastQueryPassThru(), "<br />\n";
 
-        echo "<h1>Listing People</h1>\n";
-        $peopleSimple = $this->people->getAllPeopleSimple();
-        echo $this->people->lastQueryPassThru(), "<br />\n";
-        echo "<pre>";
-        while ($person = $peopleSimple->row()) {
-            var_dump($person);
-        }
-        echo "</pre>";
+        $data['query2'] = $this->people->lastQueryPassThru();
+        $data['second_people_results'] = $this->people->getAllPeopleManual();
 
-        echo "<h1>Editing an existing person</h1>\n";
         if (!$this->people->editPerson('Teddy', 2, $personId)) {
             die("There was an error editing a person:<br />" . $this->people->lastErrorPassThru() . "<br />" . $this->people->lastQueryPassThru());
         }
-        echo $this->people->lastQueryPassThru(), "<br />\n";
 
-        echo "<h1>Listing People</h1>\n";
-        $peopleSimple = $this->people->getAllPeopleSimple();
-        echo $this->people->lastQueryPassThru(), "<br />\n";
-        echo "<pre>";
-        while ($person = $peopleSimple->row()) {
-            var_dump($person);
-        }
-        echo "</pre>";
+        $data['query3'] = $this->people->lastQueryPassThru();
+        $data['third_people_results'] = $this->people->getAllPeopleManual();
 
-        echo "<h1>Deleting a person</h1>\n";
         if (!$this->people->kill($personId)) {
             die("There was an error deleting a person:<br />" . $this->people->lastErrorPassThru() . "<br />" . $this->people->lastQueryPassThru());
         }
-        echo $this->people->lastQueryPassThru(), "<br />\n";
 
-        echo "<h1>Listing People</h1>\n";
-        $peopleSimple = $this->people->getAllPeopleSimple();
-        echo $this->people->lastQueryPassThru(), "<br />\n";
-        echo "<pre>";
-        while ($person = $peopleSimple->row()) {
-            var_dump($person);
-        }
-        echo "</pre>";
+        $data['query4'] = $this->people->lastQueryPassThru();
+        $data['fourth_people_results'] = $this->people->getAllPeopleManual();
+
+        \Sleek\View::render('database-test', $data);
     }
 }
