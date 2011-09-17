@@ -1,15 +1,13 @@
 <?php
-namespace SleekMVC;
+namespace Sleek;
 
 class Email {
-    const HTML              = 'html';
-    const TEXT              = 'text';
-
     protected $recipient    = NULL;
     protected $subject      = NULL;
     protected $body         = NULL;
     protected $sender       = NULL;
     protected $lastError    = '';
+    protected $html         = NULL;
 
     public function __construct($recipient = NULL, $subject = NULL, $body = NULL, $sender = NULL) {
         if ($recipient) {
@@ -42,14 +40,23 @@ class Email {
         return $this;
     }
 
-    public function setBody($body, $type = NULL) {
-        // TODO: Handle TEXT/HTML emails
+    public function setBody($body) {
         $this->body = $body;
         return $this;
     }
 
+    public function setTypeHtml() {
+        $this->html = TRUE;
+        return $this;
+    }
+
+    public function setTypeText() {
+        $this->html = FALSE;
+        return $this;
+    }
+
     public function setSender($sender) {
-        $recipient = trim($recipient);
+        $sender = trim($sender);
         if (!filter_var($sender, FILTER_VALIDATE_EMAIL)) {
             $this->sender = NULL;
             $this->lastError = "Invalid Email set as Sender";
@@ -63,10 +70,13 @@ class Email {
         return $this->lastError;
     }
 
-    public function send($type = NULL) {
-        // TODO: Handle TEXT/HTML emails (if only one type is specified, use that if $type is NULL)
+    public function send() {
         if ($this->recipient && $this->subject && $this->body && $this->sender) {
-            return mail($this->recipient, $this->subject, $this->body, "From: {$this->sender}");
+            $headers = "From: {$this->sender}";
+            if ($this->html) {
+                $headers .= "\r\nContent-type: text/html";
+            }
+            return mail($this->recipient, $this->subject, $this->body, $headers);
         }
     }
 
@@ -77,6 +87,13 @@ class Email {
 
     public function attachFileFromString($filename, $content) {
         // TODO: Handle fiel attachments
+        return $this;
+    }
+
+    public function debug() {
+        echo "<pre>";
+        var_dump($this);
+        echo "</pre>";
         return $this;
     }
 

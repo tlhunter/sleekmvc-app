@@ -54,6 +54,17 @@ class Controller_Home extends \Sleek\Controller_Base {
         throw new \Exception();
     }
 
+    public function action_emailtest() {
+        $email = new \Sleek\Email;
+        $email->setRecipient('tlhunter@gmail.com')
+            ->setSubject('This is a test email from Sleek')
+            ->setTypeHtml()
+            ->setBody('<em>Hey there</em>, how is it <strong>going</strong>?')
+            ->setSender('tlhunter+sleekmvc@gmail.com')
+            ->debug()
+            ->send();
+    }
+
     public function postAction() {
         // This is run similar to a deconstructor, again it is not required to have it.
     }
