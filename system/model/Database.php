@@ -1,9 +1,9 @@
 <?php
-namespace SleekMVC\Model;
+namespace Sleek;
 /**
  * All model's dealing with database connectivity should extend from this base class
  */
-abstract class Database extends Base {
+abstract class Model_Database extends Model_Base {
     /**
      * @var Database
      */
@@ -14,7 +14,7 @@ abstract class Database extends Base {
      * This is just done out of convenience, child classes could just do it the long way seen below.
      */
     function __construct() {
-        $this->db = \SleekMVC\Database::getInstance();
+        $this->db = Database::getInstance();
     }
 
 }

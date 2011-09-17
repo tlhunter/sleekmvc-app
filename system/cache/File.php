@@ -1,7 +1,7 @@
 <?php
-namespace SleekMVC\Cache;
+namespace Sleek;
 
-class File implements Base {
+class Cache_File implements Cache_Base {
     protected $directory            = NULL;
     protected $expireTime           = 0;
 

@@ -1,14 +1,14 @@
 <?php
-namespace SleekMVC\Cache;
+namespace Sleek;
 
-class Memcache implements Base {
+class Cache_Memcache implements Cache_Base {
     protected $servers              = array();
     protected $connectedServers     = array();
     protected $memcache             = NULL;
     protected $expireTime           = 0;
 
     function __construct($expireTime, $servers) {
-        $this->memcache             = new Memcache;
+        $this->memcache             = new \Memcache;
         $this->servers              = $servers;
         $this->expireTime           = (int) $expireTime;
     }

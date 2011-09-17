@@ -1,5 +1,5 @@
 <?php
-namespace SleekMVC;
+namespace Sleek;
 
 class Autoload {
 
@@ -9,20 +9,17 @@ class Autoload {
      * @return bool Whether or not the class was located
      */
     static public function loader($className) {
-        $classNameParts = explode('\\', $className);
+        list($namespace, $classNameParts) = explode('\\', $className);
         $rootDir = '';
-        $namespaced = TRUE;
-        if (count($classNameParts) === 1) { # no namespace
+        if (!$classNameParts) { # no namespace
             $rootDir = VENDOR_DIR;
-            $namespaced = FALSE;
-            $filename = $rootDir . $className . '.php';
+            $filename = $rootDir . $namespace . '.php';
         } else {
-            if ($classNameParts[0] == 'SleekMVC') {
+            $classNameParts = explode('_', $classNameParts);
+            if ($namespace == 'Sleek') {
                 $rootDir = SYSTEM_DIR;
-                array_shift($classNameParts);
-            } else if ($classNameParts[0] == 'App') {
+            } else if ($namespace == 'App') {
                 $rootDir = APP_DIR;
-                array_shift($classNameParts);
             } else {
                 $rootDir = VENDOR_DIR;
             }
@@ -42,11 +39,11 @@ class Autoload {
             }
         }
 
-        throw new Exception\ClassNotFound($className);
+        throw new Exception_ClassNotFound($className);
     }
 
     static public function register() {
-        spl_autoload_register('\SleekMVC\Autoload::loader');
-        ini_set('unserialize_callback_func', '\SleekMVC\Autoload::loader');
+        spl_autoload_register('\Sleek\Autoload::loader');
+        ini_set('unserialize_callback_func', '\Sleek\Autoload::loader');
     }
 }

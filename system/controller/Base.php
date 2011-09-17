@@ -1,11 +1,11 @@
 <?php
-namespace SleekMVC\Controller;
+namespace Sleek;
 /**
  * Controller classes need to extend this base class.
  * This class provides common functionality useful to controllers
  * Using a preAction() and postAction() function in child classes is optional.
  */
-abstract class Base {
+abstract class Controller_Base {
     /**
      * Contains data from the client's request (GET, POST, COOKIE, SERVER)
      * @var Request
@@ -28,12 +28,12 @@ abstract class Base {
      * Instantiates the Request and Response variables (and Session if enabled in config file)
      */
     public function __construct() {
-        $this->request = \SleekMVC\Request::getInstance();
-        $this->response = \SleekMVC\Response::getInstance();
+        $this->request = Request::getInstance();
+        $this->response = Response::getInstance();
 
         // Use the 'use_sessions' setting to enable or disable the session class
-        if (\SleekMVC\Config::get('use_sessions')) {
-            $this->session = \SleekMVC\Session::getInstance();
+        if (Config::get('use_sessions')) {
+            $this->session = Session::getInstance();
         }
     }
 

@@ -1,11 +1,11 @@
 <?php
-namespace App\Model;
+namespace App;
 /**
  * This People  model looks almost pointless with it being so simple. Keep in mind that it should
  * do logic and error handling stuff. Also, the PassThru functions here are bad practice, and some
  * better error handling should be done.
  */
-Class People extends \SleekMVC\Model\Database {
+Class Model_People extends \Sleek\Model_Database {
     protected $tableName = 'people';
 
     function getAllPeopleManual() {

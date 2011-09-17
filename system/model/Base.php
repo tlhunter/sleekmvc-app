@@ -1,9 +1,9 @@
 <?php
-namespace SleekMVC\Model;
+namespace Sleek;
 
 /**
  * All models should inherit from this (currently empty) class
  */
-abstract class Base {
+abstract class Model_Base {
 
 }

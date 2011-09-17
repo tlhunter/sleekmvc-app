@@ -6,7 +6,7 @@ define('VENDOR_DIR',    'vendor/');
 require_once(SYSTEM_DIR . "Autoload.php");
 require_once(SYSTEM_DIR . "Error.php");
 
-\SleekMVC\Autoload::register();
-\SleekMVC\Error::register();
+\Sleek\Autoload::register();
+\Sleek\Error::register();
 
-new \SleekMVC\Core();
+new \Sleek\Core();

@@ -1,5 +1,5 @@
 <?php
-namespace SleekMVC;
+namespace Sleek;
 
 class Cache {
     protected static $_instance         = NULL;
@@ -30,13 +30,13 @@ class Cache {
     protected static function buildCache($type) {
         switch($type) {
         case 'memcache':
-            return new \SleekMVC\Cache\Memcache(Config::get('cache_expiretime'), Config::get('cache_memcache_servers'));
+            return new Cache_Memcache(Config::get('cache_expiretime'), Config::get('cache_memcache_servers'));
             break;
         case 'apc':
-            return new \SleekMVC\Cache\APC(Config::get('cache_expiretime'));
+            return new Cache_APC(Config::get('cache_expiretime'));
             break;
         case 'file':
-            return  new \SleekMVC\Cache\File(Config::get('cache_expiretime'), Config::get('cache_file_directory'));
+            return  new Cache_File(Config::get('cache_expiretime'), Config::get('cache_file_directory'));
             break;
         }
         return NULL;

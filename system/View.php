@@ -1,5 +1,5 @@
 <?php
-namespace SleekMVC;
+namespace Sleek;
 
 class View {
     static public function render($filename, $data = array(), $string = FALSE) {

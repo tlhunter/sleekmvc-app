@@ -1,13 +1,13 @@
 <?php
-namespace App\Controller;
+namespace App;
 
-class Home extends \SleekMVC\Controller\Base {
+class Controller_Home extends \Sleek\Controller_Base {
 	
     function preAction() {
         // This function is run before your action is run. Think of it like a constructor.
         // You don't need to have it if you don't plan on using it.
         // Put any code in here you want to be run for every action in this controller.
-        $this->cache = \SleekMVC\Cache::getInstance();
+        $this->cache = \Sleek\Cache::getInstance();
     }
 
     // This page would load when we browse to /home/index or /home or /
@@ -26,15 +26,15 @@ class Home extends \SleekMVC\Controller\Base {
         $data['cachedDate'] = $this->cache->cachedValue;
 
         $data2['title'] = 'Hallo Welt!';
-        $data2['content'] = \SleekMVC\View::render('hello', $data, TRUE);
+        $data2['content'] = \Sleek\View::render('hello', $data, TRUE);
 
-        \SleekMVC\View::render('layout/main', $data2);
+        \Sleek\View::render('layout/main', $data2);
 	}
 	
     // This page would load when we browse to /home/register
 	function action_register($username = '', $email = '', $age = 0) {
 		echo "register!";
-        $people = new \App\Model\People;
+        $people = new Model_People;
         if ($id = $people->newPerson('test')) {
             echo "New person was created! Their id is $id.";
         } else {
@@ -44,10 +44,10 @@ class Home extends \SleekMVC\Controller\Base {
 
     // This pag would load when we browse to /home/people
     function action_people() {
-        $people = new \App\Model\People;
+        $people = new Model_People;
         $peopleList = $people->getPeople();
         $data['people'] = $peopleList;
-        \SleekMVC\View::render('people', $data);
+        \Sleek\View::render('people', $data);
     }
 
     function action_throwerror() {

@@ -1,7 +1,7 @@
 <?php
-namespace SleekMVC\Cache;
+namespace Sleek;
 
-class APC implements Base {
+class Cache_APC implements Cache_Base {
     protected $expireTime = 0;
 
     public function __construct($expireTime) {

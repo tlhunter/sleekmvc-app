@@ -1,9 +1,9 @@
 <?php
-namespace App\Controller;
+namespace App;
 
-class Databasetest extends \SleekMVC\Controller\Base {
+class Controller_Databasetest extends \Sleek\Controller_Base {
     function preAction() {
-        $this->people = new \App\Model\People; // This would be useful if multiple controller action's used it
+        $this->people = new Model_People; // This would be useful if multiple controller action's used it
     }
 
     function action_index() {

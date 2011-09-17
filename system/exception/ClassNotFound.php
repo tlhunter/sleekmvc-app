@@ -1,6 +1,6 @@
 <?php
-namespace SleekMVC\Exception;
+namespace Sleek;
 
-class ClassNotFound extends \Exception {
+class Exception_ClassNotFound extends \Exception {
 
 }
