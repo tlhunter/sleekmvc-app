@@ -89,7 +89,7 @@ class Response {
         return TRUE;
     }
 
-    public function view($file, $data) {
+    public function view($file, $data = array()) {
         \Sleek\View::render($file, $data);
     }
 
