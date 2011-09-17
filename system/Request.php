@@ -11,7 +11,7 @@ class Request {
 
     private function __construct() {
         self::$url['controller']   = (isset($_GET['controller']) ? ucfirst($_GET['controller']) : Config::get('default_controller'));
-        self::$url['action']       = 'action_' . (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
+        self::$url['action']       = (isset($_GET['action']) ? $_GET['action'] : Config::get('default_action'));
         self::$url['arguments']    = isset($_GET['arg']) ? $_GET['arg'] : array();
         unset($_GET['controller'], $_GET['action'], $_GET['arg']); // This data shouldn't be available to GET
     }

@@ -10,7 +10,7 @@ class Core {
     function __construct() {
         $request = Request::getInstance();
         $this->controllerName   = '\\App\\Controller_' . $request->urlController();
-        $this->actionName       = $request->urlAction();
+        $this->actionName       = 'action_' . $request->urlAction();
         $this->arguments        = $request->urlArguments();
 
         try {
