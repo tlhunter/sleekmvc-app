@@ -31,6 +31,6 @@ class Controller_Databasetest extends \Sleek\Controller_Base {
         $data['query4'] = $this->people->lastQueryPassThru();
         $data['fourth_people_results'] = $this->people->getAllPeopleManual();
 
-        \Sleek\View::render('database-test', $data);
+        $this->response->view('database-test', $data);
     }
 }

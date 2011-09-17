@@ -89,6 +89,10 @@ class Response {
         return TRUE;
     }
 
+    public function view($file, $data) {
+        \Sleek\View::render($file, $data);
+    }
+
     /**
      * This function sets a cookie. To read a cookie, use Request::cookie();
      */

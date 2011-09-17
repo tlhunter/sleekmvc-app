@@ -28,7 +28,7 @@ class Controller_Home extends \Sleek\Controller_Base {
         $data2['title'] = 'Hallo Welt!';
         $data2['content'] = \Sleek\View::render('hello', $data, TRUE);
 
-        \Sleek\View::render('layout/main', $data2);
+        $this->response->view('layout/main', $data2);
 	}
 	
     // This page would load when we browse to /home/register
@@ -47,7 +47,7 @@ class Controller_Home extends \Sleek\Controller_Base {
         $people = new Model_People;
         $peopleList = $people->getPeople();
         $data['people'] = $peopleList;
-        \Sleek\View::render('people', $data);
+        $this->response->view('people', $data);
     }
 
     function action_throwerror() {
