@@ -1,7 +1,9 @@
 <?php
-class Controller_Databasetest extends Controller_Base {
+namespace App\Controller;
+
+class Databasetest extends \SleekMVC\Controller\Base {
     function preAction() {
-        $this->people = new Model_People; // This would be useful if multiple controller action's used it
+        $this->people = new \App\Model\People; // This would be useful if multiple controller action's used it
     }
 
     function action_index() {
