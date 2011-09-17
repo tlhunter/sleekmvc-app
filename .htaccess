@@ -1,13 +1,13 @@
 RewriteEngine On
 
 #Uncomment for mediatemple
-#AddHandler php5-script .php
+#AddHandler php5latest-script .php
 
 # while bad for normal use, it makes view files prettier, e.g. <?=$title?>
 <IfModule mod_php4.c>
-<IfModule mod_php5.c>
-php_flag short_open_tags on
-</IfModule>
+    <IfModule mod_php5.c>
+        php_flag short_open_tags on
+    </IfModule>
 </IfModule>
 
 # Prevent browser from downloading hidden (.something) files
