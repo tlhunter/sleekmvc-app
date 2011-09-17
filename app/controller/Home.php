@@ -47,7 +47,7 @@ class Home extends \SleekMVC\Controller\Base {
         $people = new \App\Model\People;
         $peopleList = $people->getPeople();
         $data['people'] = $peopleList;
-        View::render('people', $data);
+        \SleekMVC\View::render('people', $data);
     }
 
     function action_throwerror() {

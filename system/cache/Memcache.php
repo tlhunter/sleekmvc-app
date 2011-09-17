@@ -21,7 +21,7 @@ class Memcache implements Base {
             }
         }
         if (!$this->servers) {
-            throw new Exception;
+            throw new \Exception;
         }
     }
 
