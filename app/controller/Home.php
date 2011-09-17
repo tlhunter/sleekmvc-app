@@ -2,7 +2,7 @@
 namespace App;
 
 class Controller_Home extends \Sleek\Controller_Base {
-	
+    
     function preAction() {
         // This function is run before your action is run. Think of it like a constructor.
         // You don't need to have it if you don't plan on using it.
@@ -11,8 +11,8 @@ class Controller_Home extends \Sleek\Controller_Base {
     }
 
     // This page would load when we browse to /home/index or /home or /
-	function action_index() {
-		$data['title'] = 'Hello World!';
+    function action_index() {
+        $data['title'] = 'Hello World!';
         $data['something'] = $this->request->get('something');
 
         if (!$this->session->random) {
@@ -29,18 +29,18 @@ class Controller_Home extends \Sleek\Controller_Base {
         $data2['content'] = \Sleek\View::render('hello', $data, TRUE);
 
         $this->response->view('layout/main', $data2);
-	}
-	
+    }
+    
     // This page would load when we browse to /home/register
-	function action_register($username = '', $email = '', $age = 0) {
-		echo "register!";
+    function action_register($username = '', $email = '', $age = 0) {
+        echo "register!";
         $people = new Model_People;
         if ($id = $people->newPerson('test')) {
             echo "New person was created! Their id is $id.";
         } else {
             echo "Error creating person. Error is {$people->lastError()}.";
         }
-	}
+    }
 
     // This pag would load when we browse to /home/people
     function action_people() {
@@ -59,5 +59,5 @@ class Controller_Home extends \Sleek\Controller_Base {
     function postAction() {
         // This is run similar to a deconstructor, again it is not required to have it.
     }
-	
+    
 }
