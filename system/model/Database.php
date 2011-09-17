@@ -13,7 +13,7 @@ abstract class Model_Database extends Model_Base {
      * Grabs a reference to the Database class and makes it accessible in child classes as $this->db
      * This is just done out of convenience, child classes could just do it the long way seen below.
      */
-    function __construct() {
+    public function __construct() {
         $this->db = Database::getInstance();
     }
 

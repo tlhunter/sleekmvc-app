@@ -8,31 +8,31 @@ namespace App;
 Class Model_People extends \Sleek\Model_Database {
     protected $tableName = 'people';
 
-    function getAllPeopleManual() {
+    public function getAllPeopleManual() {
         return $this->db->query("SELECT * FROM {$this->tableName}");
     }
 
-    function getAllPeopleSimple() {
+    public function getAllPeopleSimple() {
         return $this->db->select($this->tableName, '*');
     }
 
-    function newPerson($name, $state = 3) {
+    public function newPerson($name, $state = 3) {
         return $this->db->insert($this->tableName, array('name' => $name, 'state_id' => $state));
     }
 
-    function editPerson($newName, $newState, $existingId) {
+    public function editPerson($newName, $newState, $existingId) {
         return $this->db->update($this->tableName, array('name' => $newName, 'state_id' => $newState), array('id' => $existingId));
     }
 
-    function kill($personToKill) {
+    public function kill($personToKill) {
         return $this->db->delete($this->tableName, array('id' => $personToKill));
     }
 
-    function lastErrorPassThru() {
+    public function lastErrorPassThru() {
         return $this->db->lastError();
     }
 
-    function lastQueryPassThru() {
+    public function lastQueryPassThru() {
         return $this->db->lastQuery();
     }
 }

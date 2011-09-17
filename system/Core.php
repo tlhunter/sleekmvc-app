@@ -7,7 +7,7 @@ class Core {
     protected $actionName       = NULL;
     protected $arguments        = NULL;
 
-    function __construct() {
+    public function __construct() {
         $request = Request::getInstance();
         $this->controllerName   = '\\App\\Controller_' . $request->urlController();
         $this->actionName       = 'action_' . $request->urlAction();

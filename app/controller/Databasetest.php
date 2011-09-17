@@ -2,11 +2,11 @@
 namespace App;
 
 class Controller_Databasetest extends \Sleek\Controller_Base {
-    function preAction() {
+    public function preAction() {
         $this->people = new Model_People; // This would be useful if multiple controller action's used it
     }
 
-    function action_index() {
+    public function action_index() {
         $data['first_people_results'] = $this->people->getAllPeopleManual();
         $data['query1'] = $this->people->lastQueryPassThru();
 

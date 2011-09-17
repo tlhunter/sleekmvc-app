@@ -33,43 +33,43 @@ class Request {
         return self::$_instance;
     }
 
-    function get($key) {
+    public function get($key) {
         if (isset($_GET[$key])) {
             return $_GET[$key];
         }
         return NULL;
     }
 
-    function post($key) {
+    public function post($key) {
         if (isset($_POST[$key])) {
             return $_POST[$key];
         }
         return NULL;
     }
 
-    function cookie($key) {
+    public function cookie($key) {
         if (isset($_COOKIE[$key])) {
             return $_COOKIE[$key];
         }
         return NULL;
     }
 
-    function server($key) {
+    public function server($key) {
         if (isset($_SERVER[$key])) {
             return $_SERVER[$key];
         }
         return NULL;
     }
 
-    function urlController() {
+    public function urlController() {
         return self::$url['controller'];
     }
 
-    function urlAction() {
+    public function urlAction() {
         return self::$url['action'];
     }
 
-    function urlArguments($index = NULL) {
+    public function urlArguments($index = NULL) {
         if ($index != NULL) {
             if (isset(self::$url['arguments'][$index])) {
                 return self::$url['arguments'][$index];
