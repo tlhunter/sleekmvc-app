@@ -2,15 +2,6 @@
 namespace SleekMVC;
 
 class Autoload {
-    /**
-     * The list of directories to check for our classes, application > system
-     * @var array
-     */
-    static protected $fallback = array(
-        FALSE       => 'app',
-        ''          => 'app/vendor',
-        'SleekMVC'  => 'system'
-    );
 
     /**
      * Handles PHP autoloading thanks to spl_autoload_register()
@@ -19,15 +10,38 @@ class Autoload {
      */
     static public function loader($className) {
         $classNameParts = explode('\\', $className);
-        foreach(self::$fallback AS $namespace => $path) {
-            $filename = $path . '/' . lcfirst(str_replace('\\', '/', $className)) . '.php';
-            if (file_exists($filename)) {
-                include_once($filename);
-                if (class_exists($className) || interface_exists($className)) {
-                    return TRUE;
-                }
+        $rootDir = '';
+        $namespaced = TRUE;
+        if (count($classNameParts) === 1) { # no namespace
+            $rootDir = VENDOR_DIR;
+            $namespaced = FALSE;
+            $filename = $rootDir . $className . '.php';
+        } else {
+            if ($classNameParts[0] == 'SleekMVC') {
+                $rootDir = SYSTEM_DIR;
+                array_shift($classNameParts);
+            } else if ($classNameParts[0] == 'App') {
+                $rootDir = APP_DIR;
+                array_shift($classNameParts);
+            } else {
+                $rootDir = VENDOR_DIR;
+            }
+
+            $filename = $rootDir;
+
+            for($i = 0; $i < count($classNameParts) - 1; $i++) {
+                $filename .= lcfirst($classNameParts[$i]) . '/';
+            }
+            $filename .= $classNameParts[$i++] . '.php';
+        }
+
+        if (file_exists($filename)) {
+            include_once($filename);
+            if (class_exists($className) || interface_exists($className)) {
+                return TRUE;
             }
         }
+
         throw new Exception\ClassNotFound($className);
     }
 

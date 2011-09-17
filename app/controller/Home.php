@@ -1,11 +1,13 @@
 <?php
-class Controller_Home extends Controller_Base {
+namespace App\Controller;
+
+class Home extends \SleekMVC\Controller\Base {
 	
     function preAction() {
         // This function is run before your action is run. Think of it like a constructor.
         // You don't need to have it if you don't plan on using it.
         // Put any code in here you want to be run for every action in this controller.
-        $this->cache = Cache::getInstance();
+        $this->cache = \SleekMVC\Cache::getInstance();
     }
 
     // This page would load when we browse to /home/index or /home or /
@@ -24,15 +26,15 @@ class Controller_Home extends Controller_Base {
         $data['cachedDate'] = $this->cache->cachedValue;
 
         $data2['title'] = 'Hallo Welt!';
-        $data2['content'] = View::render('hello', $data, TRUE);
+        $data2['content'] = \SleekMVC\View::render('hello', $data, TRUE);
 
-        View::render('layout/main', $data2);
+        \SleekMVC\View::render('layout/main', $data2);
 	}
 	
     // This page would load when we browse to /home/register
 	function action_register($username = '', $email = '', $age = 0) {
 		echo "register!";
-        $people = new Model_People;
+        $people = new \App\Model\People;
         if ($id = $people->newPerson('test')) {
             echo "New person was created! Their id is $id.";
         } else {
@@ -42,7 +44,7 @@ class Controller_Home extends Controller_Base {
 
     // This pag would load when we browse to /home/people
     function action_people() {
-        $people = new Model_People;
+        $people = new \App\Model\People;
         $peopleList = $people->getPeople();
         $data['people'] = $peopleList;
         View::render('people', $data);

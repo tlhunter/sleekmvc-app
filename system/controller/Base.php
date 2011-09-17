@@ -28,12 +28,12 @@ abstract class Base {
      * Instantiates the Request and Response variables (and Session if enabled in config file)
      */
     public function __construct() {
-        $this->request = Request::getInstance();
-        $this->response = Response::getInstance();
+        $this->request = \SleekMVC\Request::getInstance();
+        $this->response = \SleekMVC\Response::getInstance();
 
         // Use the 'use_sessions' setting to enable or disable the session class
-        if (Config::get('use_sessions')) {
-            $this->session = Session::getInstance();
+        if (\SleekMVC\Config::get('use_sessions')) {
+            $this->session = \SleekMVC\Session::getInstance();
         }
     }
 

@@ -9,13 +9,13 @@ class Core {
 
     function __construct() {
         $request = Request::getInstance();
-        $this->controllerName   = $request->urlController();
+        $this->controllerName   = '\\App\\Controller\\' . $request->urlController();
         $this->actionName       = $request->urlAction();
         $this->arguments        = $request->urlArguments();
 
         try {
             $this->controller = new $this->controllerName;
-        } catch (Exception_ClassNotFound $e) {
+        } catch (\SleekMVC\Exception\ClassNotFound $e) {
             self::throw404();
         }
 
@@ -29,7 +29,7 @@ class Core {
     }
 
     public static function throw404() {
-        $errorControllerName = 'Controller_' . Config::get('error_controller');
+        $errorControllerName = '\\App\\Controller\\' . Config::get('error_controller');
         $errorController = new $errorControllerName;
         self::loadController(
             $errorController,
@@ -40,7 +40,7 @@ class Core {
 
     public static function loadController($controller, $action, $arguments = array()) {
         if (is_string($controller)) {
-            $controller = 'Controller_' . $controller;
+            $controller = '\\App\\Controller\\' . $controller;
         }
         call_user_func_array(
             array(

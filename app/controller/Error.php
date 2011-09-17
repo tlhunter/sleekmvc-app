@@ -1,9 +1,11 @@
 <?php
-class Controller_Error extends Controller_Base {
+namespace App\Controller;
+
+class Error extends \SleekMVC\Controller\Base {
 
     public function action_404() {
         $this->response->status(404);
-        View::render('error/404');
+        \SleekMVC\View::render('error/404');
     }
 
     public function action_500($number = FALSE, $text = '', $filename = '', $linenumber = 0, $context = '') {
@@ -14,7 +16,7 @@ class Controller_Error extends Controller_Base {
             'linenumber' => $linenumber,
             'context' => $context,
         );
-        View::render('error/500', $data);
+        \SleekMVC\View::render('error/500', $data);
         return TRUE;
     }
 }
