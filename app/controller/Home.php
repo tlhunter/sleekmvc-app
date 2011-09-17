@@ -51,10 +51,8 @@ class Controller_Home extends \Sleek\Controller_Base {
     }
 
     public function action_throwerror() {
-        throw new exception();
-
+        throw new \Exception();
     }
-
 
     public function postAction() {
         // This is run similar to a deconstructor, again it is not required to have it.
