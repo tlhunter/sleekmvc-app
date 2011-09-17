@@ -1,7 +1,7 @@
 <?php
 namespace SleekMVC;
 
-class DatabaseResult implements Countable {
+class DatabaseResult implements \Countable {
     /**
      * This is the database query result resource
      * @var Resource

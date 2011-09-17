@@ -14,7 +14,7 @@ abstract class Database extends Base {
      * This is just done out of convenience, child classes could just do it the long way seen below.
      */
     function __construct() {
-        $this->db = Database::getInstance();
+        $this->db = \SleekMVC\Database::getInstance();
     }
 
 }
