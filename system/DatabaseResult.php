@@ -1,18 +1,10 @@
 <?php
 namespace Sleek;
 
-class DatabaseResult implements \Countable {
-    /**
-     * This is the database query result resource
-     * @var Resource
-     */
-    protected $result = NULL;
+class DatabaseResult extends \MySQLi_Result implements \Countable {
 
-    /**
-     * Create this class by passing in a database result
-     */
-    public function __construct($databaseResult) {
-        $this->result = $databaseResult;
+    public function __construct($mysqli) {
+        parent::__construct($mysqli);
     }
 
     /**
@@ -21,7 +13,7 @@ class DatabaseResult implements \Countable {
      * @return array
      */
     public function row() {
-        return mysql_fetch_assoc($this->result);
+        return $this->fetch_assoc();
     }
 
     /**
@@ -30,7 +22,7 @@ class DatabaseResult implements \Countable {
      * @return array
      */
     public function enum() {
-        return mysql_fetch_row($this->result);
+        return $this->fetch_row();
     }
 
     /**
@@ -39,7 +31,7 @@ class DatabaseResult implements \Countable {
      * @return stdClass
      */
     public function object() {
-        return mysql_fetch_object($this->result);
+        return $this->fetch_object();
     }
 
     /**
@@ -47,6 +39,6 @@ class DatabaseResult implements \Countable {
      * @return int
      */
     public function count() {
-        return mysql_num_rows($this->result);
+        return $this->num_rows();
     }
 }

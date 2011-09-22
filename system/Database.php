@@ -1,16 +1,11 @@
 <?php
 namespace Sleek;
 
-class Database {
+class Database extends \MySQLi {
     /**
      * @var Database The singleton instance of our database class
      */
     static private $_instance   = NULL;
-
-    /**
-     * @var Resource The connection to the database
-     */
-    protected $connection       = NULL;
 
     /**
      * @var string The last query which was executed by this class
@@ -22,8 +17,7 @@ class Database {
      */
     private function __construct() {
         $settings = Config::get('database');
-        $this->connection = mysql_connect($settings['host'], $settings['user'], $settings['pass']);
-        $this->selectDatabase($settings['name']);
+        return parent::__construct($settings['host'], $settings['user'], $settings['pass'], $settings['name']);
     }
 
     /**
@@ -49,7 +43,7 @@ class Database {
      * @return NULL
      */
     public function selectDatabase($database) {
-        mysql_select_db($database, $this->connection);
+        return $this->select_db($database);
     }
 
     /**
@@ -58,9 +52,10 @@ class Database {
      * @return int | FALSE
      */
     public function query($query) {
-        $result = $this->executeRawQuery($query);
+        $this->lastQuery = $query;
+        $result = parent::query($query);
         if ($result) {
-            return new DatabaseResult($result);
+            return new DatabaseResult($this);
         }
         return FALSE;
     }
@@ -72,12 +67,12 @@ class Database {
      * @return int | FALSE
      */
     public function querySimple($query) {
-        $result = $this->executeRawQuery($query);
+        $this->lastQuery = $query;
+        $result = $this->query($query);
         if ($result) {
-            return mysql_affected_rows($this->connection);
-        } else {
-            return FALSE;
+            return $this->affected_rows;
         }
+        return FALSE;
     }
 
     /**
@@ -85,7 +80,7 @@ class Database {
      * @return int
      */
     public function lastId() {
-        return mysql_insert_id($this->connection);
+        return $this->insert_id;
     }
 
     /**
@@ -93,7 +88,7 @@ class Database {
      * @return string
      */
     public function lastError() {
-        return mysql_error($this->connection);
+        return $this->error;
     }
 
     /**
@@ -109,7 +104,7 @@ class Database {
      * @return int
      */
     public function affectedRows() {
-        return mysql_affected_rows($this->connection);
+        return $this->affected_rows;
     }
 
     /**
@@ -122,13 +117,13 @@ class Database {
         $sql = "INSERT INTO $table SET ";
         $interim = array();
         foreach($data AS $key => $value) {
-            $interim[] = "`$key` = '" . mysql_real_escape_string($value, $this->connection) . "'";
+            $interim[] = "`$key` = '" . self::real_escape_string($value) . "'";
         }
         $data = implode($interim, ',');
         $sql .= $data;
 
         if ($this->executeRawQuery($sql)) {
-            return mysql_insert_id($this->connection);
+            return $this->insert_id;
         } else {
             return FALSE;
         }
@@ -144,13 +139,13 @@ class Database {
         $sql = "DELETE FROM $table WHERE ";
         $interim = array();
         foreach($where AS $key => $value) {
-            $interim[] = "`$key` = '" . mysql_real_escape_string($value, $this->connection) . "'";
+            $interim[] = "`$key` = '" . self::real_escape_string($value) . "'";
         }
         $data = implode($interim, ' AND ');
         $sql .= $data;
 
         if ($this->executeRawQuery($sql)) {
-            return mysql_affected_rows($this->connection);
+            return $this->affected_rows;
         } else {
             return FALSE;
         }
@@ -168,7 +163,7 @@ class Database {
         $sql = "UPDATE $table SET ";
         $interim = array();
         foreach($data AS $key => $value) {
-            $interim[] = "`$key` = '" . mysql_real_escape_string($value, $this->connection) . "'";
+            $interim[] = "`$key` = '" . self::real_escape_string($value) . "'";
         }
         $data = implode($interim, ',');
         $sql .= $data;
@@ -177,14 +172,14 @@ class Database {
             $sql .= " WHERE ";
             $interim = array();
             foreach($where AS $key => $value) {
-                $interim[] = "`$key` = '" . mysql_real_escape_string($value, $this->connection) . "'";
+                $interim[] = "`$key` = '" . self::real_escape_string($value) . "'";
             }
             $data = implode($interim, ' AND ');
             $sql .= $data;
         }
 
         if ($this->executeRawQuery($sql)) {
-            return mysql_affected_rows($this->connection);
+            return $this->affected_rows;
         } else {
             return FALSE;
         }
@@ -224,7 +219,7 @@ class Database {
             $sql .= " WHERE ";
             $interim = array();
             foreach($where AS $key => $value) {
-                $interim[] = "`$key` = '" . mysql_real_escape_string($value, $this->connection) . "'";
+                $interim[] = "`$key` = '" . self::real_escape_string($value) . "'";
             }
             $data = implode($interim, ' AND ');
             $sql .= $data;
@@ -239,7 +234,7 @@ class Database {
 
         $result = $this->executeRawQuery($sql);
         if ($result) {
-            return new DatabaseResult($result);
+            return new DatabaseResult($this);
         }
         return FALSE;
     }
@@ -252,7 +247,7 @@ class Database {
      */
     protected function executeRawQuery($query) {
         $this->lastQuery = $query;
-        return mysql_query($query, $this->connection);
+        return $this->query($query);
     }
 
 }
