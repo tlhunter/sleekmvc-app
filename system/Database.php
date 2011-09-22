@@ -55,7 +55,7 @@ class Database extends \MySQLi {
         $this->lastQuery = $query;
         $result = parent::query($query);
         if ($result) {
-            return new DatabaseResult($this);
+            return is_bool($result) ? $result : new DatabaseResult($result);
         }
         return FALSE;
     }
@@ -234,7 +234,7 @@ class Database extends \MySQLi {
 
         $result = $this->executeRawQuery($sql);
         if ($result) {
-            return new DatabaseResult($this);
+            return is_bool($result) ? $result : new DatabaseResult($result);
         }
         return FALSE;
     }
