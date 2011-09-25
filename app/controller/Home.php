@@ -45,7 +45,7 @@ class Controller_Home extends \Sleek\Controller_Base {
     // This pag would load when we browse to /home/people
     public function action_people() {
         $people = new Model_People;
-        $peopleList = $people->getPeople();
+        $peopleList = $people->getAllPeopleSimple();
         $data['people'] = $peopleList;
         $this->response->view('people', $data);
     }
