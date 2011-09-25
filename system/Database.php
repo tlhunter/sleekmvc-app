@@ -234,7 +234,7 @@ class Database extends \MySQLi {
 
         $result = $this->executeRawQuery($sql);
         if ($result) {
-            return is_bool($result) ? $result : new DatabaseResult($result);
+            return $result;
         }
         return FALSE;
     }
