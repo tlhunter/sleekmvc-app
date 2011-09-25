@@ -6,9 +6,9 @@ if ($people) {
 <table>
 <tr><th>Name</th><th>Profession</th></tr>
 <?php
-while ($person = $people->object()) {
+foreach ($people as $person) {
 ?>
-    <tr><td><?=$person->name?></td><td><?=$person->career?></td></tr>
+    <tr><td><?=$person['name']?></td><td><?=$person['career_id']?></td></tr>
 <?php
 }
 ?>
