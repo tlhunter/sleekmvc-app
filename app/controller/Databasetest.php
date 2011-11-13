@@ -2,6 +2,11 @@
 namespace App;
 
 class Controller_Databasetest extends \Sleek\Controller_Base {
+    /**
+     * @var Model_People
+     */
+    protected $people;
+
     public function preAction() {
         $this->people = new Model_People; // This would be useful if multiple controller action's used it
     }

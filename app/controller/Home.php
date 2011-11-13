@@ -2,6 +2,16 @@
 namespace App;
 
 class Controller_Home extends \Sleek\Controller_Base {
+
+    /**
+     * @var \Sleek\Cache
+     */
+    protected $cache;
+
+    /**
+     * @var \Sleek\Session
+     */
+    protected $session;
     
     public function preAction() {
         // This function is run before your action is run. Think of it like a constructor.
