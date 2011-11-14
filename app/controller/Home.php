@@ -1,33 +1,53 @@
 <?php
 namespace App;
 
+/**
+ * This is the Home controller, and is executed by default when someone browses to the root site path
+ * @throws \Exception
+ *
+ */
 class Controller_Home extends \Sleek\Controller_Base {
 
     /**
+     * This controller shows how to cache values, and this variable represents that cache
      * @var \Sleek\Cache
      */
     protected $cache;
 
     /**
+     * This controller also shows how to store data in the session, and this points to the session
      * @var \Sleek\Session
      */
     protected $session;
-    
+
+    /**
+     * This function is executed once per page execution, and is run before the requested action
+     * Think of it as a helptul place to put code which you want to run regardless of which action
+     * a user requests. It is not required but is nice to have.
+     * @return void
+     */
     public function preAction() {
-        // This function is run before your action is run. Think of it like a constructor.
-        // You don't need to have it if you don't plan on using it.
-        // Put any code in here you want to be run for every action in this controller.
         $this->cache = \Sleek\Cache::getInstance();
     }
 
-    // This page would load when we browse to /home/index or /home or /
+    /**
+     * The index action is the default action of controllers (configurable in config.ini)
+     * You can run this code by visiting /, /home, or /home/index
+     * @return void
+     */
     public function action_index() {
+        // The $data array is what we use for storing view data. Each index of this array
+        // will be accessible in the view we execute later. You don't have to name it $data
+        // if you don't want to. The below variable will be called $title in the view file.
         $data['title'] = 'Hello World!';
         $data['something'] = $this->request->get('something');
 
+        // If we don't already have this variable in the session, make one
         if (!$this->session->random) {
             $this->session->random = rand(1, 1000);
         }
+
+        // If we haven't already cached a value, go ahead and do so
         if (!$this->cache->cachedValue) {
             $this->cache->cachedValue = time();
         }
@@ -35,13 +55,27 @@ class Controller_Home extends \Sleek\Controller_Base {
         $data['random'] = $this->session->random;
         $data['cachedDate'] = $this->cache->cachedValue;
 
+        // This is another array. We'll be using two since we want to render two view files
         $data2['title'] = 'Hallo Welt!';
+
+        // Here we are rendering a view file and returning it as a string. This allows us to
+        // have 'views inside views'. The view file we load will be APP_PATH/view/hello.php
         $data2['content'] = \Sleek\View::render('hello', $data, TRUE);
 
+        // Here we tell the response to load a view, and tell it what data to render
         $this->response->view('layout/main', $data2);
     }
     
-    // This page would load when we browse to /home/register
+    /**
+     * You can have as many actions in a controller as you want.
+     * This page is accessible via /home/register only.
+     * The third, fourth, and fifth URL parameters are passed in as arguments.
+     * You'll usually want to provide default values for these arguments.
+     * @param string $username
+     * @param string $email
+     * @param int $age
+     * @return void
+     */
     public function action_register($username = '', $email = '', $age = 0) {
         echo "register!";
         $people = new Model_People;
@@ -52,7 +86,10 @@ class Controller_Home extends \Sleek\Controller_Base {
         }
     }
 
-    // This pag would load when we browse to /home/people
+    /**
+     * This page is loaded when you visit /home/people
+     * @return void
+     */
     public function action_people() {
         $people = new Model_People;
         $peopleList = $people->getAllPeopleSimple();
@@ -60,23 +97,39 @@ class Controller_Home extends \Sleek\Controller_Base {
         $this->response->view('people', $data);
     }
 
+    /**
+     * This action is executed when you visit /home/throwerror
+     * Run this to see how SleekMVC handles errors
+     * @throws \Exception
+     * @return void
+     */
     public function action_throwerror() {
         throw new \Exception();
     }
 
+    /**
+     * This action is executed when you visit /home/emailtest
+     * It generates and sends an email.
+     * @return void
+     */
     public function action_emailtest() {
         $email = new \Sleek\Email;
-        $email->setRecipient('tlhunter@gmail.com')
+        $email->setRecipient('user@example.com')
             ->setSubject('This is a test email from Sleek')
             ->setTypeHtml()
             ->setBody('<em>Hey there</em>, how is it <strong>going</strong>?')
-            ->setSender('tlhunter+sleekmvc@gmail.com')
+            ->setSender('user@example.com')
             ->debug()
             ->send();
     }
 
+    /**
+     * This function is executed once per page load after the requested action has run
+     * It is not needed, but can be helpful
+     * @return void
+     */
     public function postAction() {
-        // This is run similar to a deconstructor, again it is not required to have it.
+
     }
     
 }
