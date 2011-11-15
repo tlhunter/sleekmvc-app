@@ -40,6 +40,8 @@ class Controller_Home extends \Sleek\Controller_Base {
         // will be accessible in the view we execute later. You don't have to name it $data
         // if you don't want to. The below variable will be called $title in the view file.
         $data['title'] = 'Hello World!';
+
+        // Use the $request object in a controller for getting data from the user
         $data['something'] = $this->request->get('something');
 
         // If we don't already have this variable in the session, make one
@@ -52,6 +54,7 @@ class Controller_Home extends \Sleek\Controller_Base {
             $this->cache->cachedValue = time();
         }
 
+        // Here we set the values from above to our view array
         $data['random'] = $this->session->random;
         $data['cachedDate'] = $this->cache->cachedValue;
 
