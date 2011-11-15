@@ -85,7 +85,7 @@ class Controller_Home extends \Sleek\Controller_Base {
         if ($id = $people->newPerson('test')) {
             echo "New person was created! Their id is $id.";
         } else {
-            echo "Error creating person. Error is {$people->lastError()}.";
+            echo "Error creating person. Error is {$people->lastErrorPassThru()}.";
         }
     }
 
