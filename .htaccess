@@ -1,3 +1,4 @@
+# This line enables URL rewrites
 RewriteEngine On
 
 #Uncomment for mediatemple
@@ -24,3 +25,6 @@ RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_]+)/?$ index.php?controller=$1&action=$2
 RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_]+)/([a-zA-Z0-9_-]+)/?$ index.php?controller=$1&action=$2&arg[]=$3 [QSA]
 RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ index.php?controller=$1&action=$2&arg[]=$3&arg[]=$4 [QSA]
 RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9_]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ index.php?controller=$1&action=$2&arg[]=$3&arg[]=$4&arg[]=$5 [QSA]
+
+# This line sends requests for documents Apache can't find to an fake controller (causing a 404 in SleekMVC)
+ErrorDocument 404 /index.php?controller=404
