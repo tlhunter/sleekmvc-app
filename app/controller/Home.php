@@ -15,14 +15,8 @@ class Controller_Home extends \Sleek\Controller_Base {
     protected $cache;
 
     /**
-     * This controller also shows how to store data in the session, and this points to the session
-     * @var \Sleek\Session
-     */
-    protected $session;
-
-    /**
      * This function is executed once per page execution, and is run before the requested action
-     * Think of it as a helptul place to put code which you want to run regardless of which action
+     * Think of it as a helpful place to put code which you want to run regardless of which action
      * a user requests. It is not required but is nice to have.
      * @return void
      */
