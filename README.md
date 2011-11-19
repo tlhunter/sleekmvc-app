@@ -9,7 +9,7 @@ well known PHP frameworks Kohana and CodeIgniter. The views are very similar, it
 autoloading like with Kohana, and doesn't require the hacky class loading of CodeIgniter left over
 from it's PHP 4 compatible days.
 
-SleekMVC is currently in alpha stages and is highly recommended not to be used for productions sites.
+SleekMVC is currently in beta stages and is highly recommended not to be used for productions sites.
 When it is ready for public consumption, there will be documentation explaining every facet of the
 framework, and detailing all of the provided classes.
 
@@ -21,8 +21,8 @@ Goals for SleekMVC:
 * Don't clobber $_GET (or any super global) variables (e.g. CodeIgniter)
 * Don't require a ton of 'empty' class files (e.g. Kohana)
 * Provide a easily understood autoloader which handles namespaces
-* Use _standard_ PHP class conventions which are IDE _intellisense_ compatible
+* Work with IDE autocomplete features out of the box
 * Use raw PHP files for views (but allow template engine usage if desired)
 * View files won't need to execute classes to access data
-* Provide extensive, clear documentation, for every single developer available feature
+* Provide extensive, clear documentation, for every single developer exposed feature
 * Provide request and response objects for handling related superglobals
