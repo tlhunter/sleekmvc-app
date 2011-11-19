@@ -101,16 +101,6 @@ class Controller_Home extends \Sleek\Controller_Base {
     }
 
     /**
-     * This action is executed when you visit /home/throwerror
-     * Run this to see how SleekMVC handles errors
-     * @throws \Exception
-     * @return void
-     */
-    public function action_throwerror() {
-        throw new \Exception();
-    }
-
-    /**
      * This action is executed when you visit /home/emailtest
      * It generates and sends an email.
      * @return void
@@ -133,6 +123,20 @@ class Controller_Home extends \Sleek\Controller_Base {
      */
     public function postAction() {
 
+    }
+
+    /**
+     * This function is like a per-controller 404 action. But, don't think of it as
+     * being useful for just catching 404's. You can use it for cool things like a
+     * short URL service. Think example.com/product/a7fc3
+     * @param string $argument1
+     * @param string $argument2
+     * @param string $argument3
+     * @return void
+     */
+    public function noAction($argument1 = '', $argument2 = '', $argument3 = '') {
+        $requestedAction = $this->request->urlAction();
+        echo "You requested the $requestedAction action of the Home controller, which doesn't exist.";
     }
     
 }
