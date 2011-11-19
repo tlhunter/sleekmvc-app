@@ -37,4 +37,15 @@ class Controller_Error extends \Sleek\Controller_Base {
         );
         $this->response->view('error/500', $data);
     }
+
+    /**
+     * Use this for throwing PHP fatal errors.
+     * @param string $error
+     * @return void
+     */
+    public function action_fatal($error) {
+        $this->response->status(500);
+        $data['error'] = $error;
+        $this->response->view('error/fatal', $data);
+    }
 }
