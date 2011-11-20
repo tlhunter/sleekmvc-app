@@ -3,12 +3,13 @@ namespace App;
 
 /**
  * This controller is used when your app generates an error. It allows you to handle
- * various types of errors an app usually has, such as 404 and 500 errors.
+ * various types of errors an app usually has, such as 404 and 500 errors. Note that
+ * PHP error handling isn't perfect and this class won't grab all of our errors.
  */
 class Controller_Error extends \Sleek\Controller_Base {
 
     /**
-     * Use this for a custom 404 error page. Note that it won't grab all 404's
+     * Use this for a custom 404 error page.
      * @return void
      */
     public function action_404() {

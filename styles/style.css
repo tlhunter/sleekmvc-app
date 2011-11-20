@@ -1,0 +1,94 @@
+body {
+	margin: 0px;
+	text-align: center;
+	font-family: verdana;
+	font-size: 11px;
+}
+#container {
+	margin: 0 auto 0 auto;
+	width: 600px;
+	text-align: left;
+}
+#top {
+	padding: 10px 0 10px 0;
+	height: 20px;
+	margin: 0 0 10px 0;
+	border-bottom: 1px dotted #ccc;
+}
+#ie-wrapper {
+	text-align: center;
+}
+h1#header {
+	width: 356px; height: 102px;
+	background-image: url("../images/logo.png");
+	margin: 0 auto 0 auto; padding: 0px;
+	clear: both;
+}
+h1#header span {
+	display: none;
+}
+#footer {
+	text-align: center;
+	border-top: 1px dotted #ccc;
+	padding-top: 10px;
+	color: #999;
+	margin-top: 20px;
+}
+a {
+	color: #51bafc;
+}
+#url {
+	border: 1px solid #109df6;
+	padding: 4px 0 0 4px;
+	font-size: 12px;
+	width: 400px;
+	height: 28px;
+	vertical-align: middle;
+}
+#convert {
+	border: 1px solid #109df6;
+	font-size: 12px;
+	width: #999;
+	width: 40px; height: 28px;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+form {
+	margin: 0px; padding: 0px;
+	text-align: center;
+}
+p {
+	text-align: justify;
+	color: #666;
+	margin: 20px 0 20px 0;
+	padding: 0px;
+	line-height: 16px;
+}
+.error {
+	border: 1px solid red;
+	color: red;
+	padding: 10px;
+}
+.success {
+	border: 1px solid green;
+	color: green;
+	padding: 10px;
+}
+#lefty {
+	width: 300px;
+	float: left;
+	text-align: left;
+}
+#righty {
+	width: 190px;
+	float: right;
+	text-align: right;
+}
+pre {
+	font-family: consolas, "courier new";
+	font-size: 12px;
+	color: #666;
+	border-left: 2px solid #51bafc;
+	padding: 4px 0 4px 8px;
+	background-color: #eee;
+}
