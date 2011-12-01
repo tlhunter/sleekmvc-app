@@ -136,7 +136,7 @@ class Model_EzLink extends \Sleek\Model_Database {
                 $month = 1;
                 $year++;
             }
-            $val = $data[$year . '-' . $month];
+            $val = isset($data[$year . '-' . $month]) ? $data[$year . '-' . $month] : 0;
             $column_height = ($height / 100) * (( $val / $maxv) * 100) * 2;
 
             $x1 = $i * $column_width;
