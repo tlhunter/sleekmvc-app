@@ -4,7 +4,7 @@ SleekMVC is first and foremost a simple framework, meant to be easily consumed b
 PHP developers. It was specifically built to be used by first year PHP students while being flexible
 enough to work for large scale applications. You won't find any useless classes shipped with Sleek.
 
-[SleekMVC Documentation](https://github.com/renownedmedia/sleekmvc-app/wiki)
+[SleekMVC Documentation](https://github.com/tlhunter/sleekmvc-app/wiki)
 
 SleekMVC requires namespaces and therefore requires PHP 5.3+. Sleek has a similar syntax to the two
 well known PHP frameworks Kohana and CodeIgniter. The views are very similar, it uses convenient
