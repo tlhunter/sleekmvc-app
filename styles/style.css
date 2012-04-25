@@ -1,7 +1,7 @@
 body {
-	margin: 0px;
+	margin: 0;
 	text-align: center;
-	font-family: verdana;
+	font-family: verdana, sans-serif;
 	font-size: 11px;
 }
 #container {
@@ -21,7 +21,7 @@ body {
 h1#header {
 	width: 356px; height: 102px;
 	background-image: url("../images/logo.png");
-	margin: 0 auto 0 auto; padding: 0px;
+	margin: 0 auto 0 auto; padding: 0;
 	clear: both;
 }
 h1#header span {
@@ -48,20 +48,20 @@ a {
 #convert {
 	border: 1px solid #109df6;
 	font-size: 12px;
-	width: #999;
 	width: 40px; height: 28px;
 	vertical-align: middle;
 	margin-left: 10px;
 }
 form {
-	margin: 0px; padding: 0px;
+	margin: 0;
+    padding: 0;
 	text-align: center;
 }
 p {
 	text-align: justify;
 	color: #666;
 	margin: 20px 0 20px 0;
-	padding: 0px;
+	padding: 0;
 	line-height: 16px;
 }
 .error {
@@ -85,7 +85,7 @@ p {
 	text-align: right;
 }
 pre {
-	font-family: consolas, "courier new";
+	font-family: consolas, "courier new", monospace;
 	font-size: 12px;
 	color: #666;
 	border-left: 2px solid #51bafc;
