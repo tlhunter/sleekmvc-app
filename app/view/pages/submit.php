@@ -2,12 +2,12 @@
 <div class='success'>
     <table border='0'>
         <tr>
-            <td>http://<?=$server?>/link/<?=$code?></td>
+            <td>http://<?=$server?><?=$base_url?>link/<?=$code?></td>
             <td>&nbsp;&nbsp;</td>
             <td>(Fast Redirect)</td>
         </tr>
         <tr>
-            <td>http://<?=$server?>/link/<?=$code?>?h</td>
+            <td>http://<?=$server?><?=$base_url?>link/<?=$code?>?h</td>
             <td>&nbsp;&nbsp;</td>
             <td>(Hides Referrer ezlink.info)</td>
         </tr>

@@ -34,6 +34,7 @@ abstract class Controller_HasLayout extends \Sleek\Controller_Base {
     public function preAction() {
         $this->page_data['title'] = 'EzLink';
         $this->page_data['server'] = $this->request->server('HTTP_HOST');
+        $this->page_data['base_url'] = \Sleek\Config::get('base_url');
     }
 
     /**
