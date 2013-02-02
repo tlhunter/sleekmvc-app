@@ -20,7 +20,7 @@ Goals for SleekMVC:
 * So easy to use, first year PHP developers can become proficient
 * Secure variables and prevent XSS and injection attacks
 * Core framework remain small and lightweight
-* Don't clobber $_GET (or any super global) variables (e.g. CodeIgniter)
+* Don't prevent access to $_GET (or any super global) variables (e.g. CodeIgniter)
 * Don't require a ton of 'empty' class files (e.g. Kohana)
 * Provide a easily understood autoloader which handles namespaces
 * Work with IDE autocomplete features out of the box
