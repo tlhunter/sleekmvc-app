@@ -32,4 +32,23 @@ class Controller_Home extends Controller_HasLayout {
         $this->page_data['content'] = \Sleek\View::render('pages/submit', $this->page_data, TRUE);
     }
 
+    public function action_test($arguments) {
+        echo "<pre>";
+        echo "Arguments:\n";
+        var_dump($arguments);
+        echo "\n\nTest Param:\n";
+        $gets = $this->request->get('testParam');
+        var_dump($gets);
+        echo "\n\nGlobal GET:\n";
+        var_dump($_GET);
+        echo "\n\nSERVER:\n";
+        var_dump($_SERVER);
+        echo "</pre>";
+        exit();
+    }
+
+    public function action_view_user($arguments) {
+        die($arguments['user_id']);
+    }
+
 }

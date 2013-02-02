@@ -28,5 +28,33 @@ require_once(SYSTEM_DIR . 'Error.php');
 // Enables the error catching code
 \Sleek\Error::register();
 
+// Configure the router class. Add more routes here, above the default one (they're matched in order)
+// Both :controller and :action are magical, any others are not.
+// Paranthesis mean that what is inside is optional.
+// Strings starting with : are pattern match groups.
+
+// Here's an example route, where you can browse to /users/100
+// www.example.com/root/users/100
+// This will run Controller_Home::action_view_user(array('user_id'=>'100'));
+\Sleek\Request::addRoute('/users/:user_id', array(
+    'controller' => 'home',
+    'action' => 'view_user',
+
+    'user_id' => NULL
+));
+
+// This is a "catch all" route; in many cases it will be all you need.
+
+// www.example.com/root/
+// www.example.com/root/controllerName
+// www.example.com/root/controllerName/actionName
+// www.example.com/root/controllerName/actionName/something
+\Sleek\Request::addRoute('(/:controller(/:action(/:id)))', array(
+    'controller' => 'home',
+    'action' => 'index',
+
+    'id' => NULL
+));
+
 // Executes SleekMVC
 new \Sleek\Core();
